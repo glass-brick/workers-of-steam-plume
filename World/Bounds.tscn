@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Bounds" type="RigidBody2D"]
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -1.25992 )
+polygon = PoolVector2Array( -15, -15, -15, 615, 1039, 615, 1039, -15, 0, -15, 0, 0, 1024, 0, 1024, 600, 0, 600, 0, 0, 0, -15 )

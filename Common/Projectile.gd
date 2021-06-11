@@ -17,7 +17,7 @@ func _physics_process(delta):
 func explode():
 	queue_free()
 
-func _on_Area2D_body_entered(body):
+func _on_Projectile_body_entered(body):
 	if body.has_method('_on_hit'):
 		body._on_hit(damage, self)
 		explode()

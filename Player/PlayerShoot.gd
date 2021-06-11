@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 export (int) var speed = 400
-export (int) var health = 100
 export (int) var iframe_time = 2
 export (float) var blinking_speed = 0.05
 
@@ -36,10 +35,3 @@ func _physics_process(_delta):
 	if current_state == PlayerStates.UNLOCKED:
 		get_input()
 
-func _on_hit(damageTaken, _attacker):
-	if not current_state == PlayerStates.DEAD:
-		self.health = max(self.health - damageTaken, 0)
-		if health <= 0:
-			current_state = PlayerStates.DEAD
-		else:
-			self.iframe_active = true
