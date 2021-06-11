@@ -2,13 +2,13 @@ extends KinematicBody2D
 
 export (int) var speed = 400
 export (int) var health = 100
-export (int) var iframe_time = 2
+export (int) var iframes_time = 2
 export (float) var blinking_speed = 0.05
 export (int) var dig_length = 100
 
 var velocity = Vector2(0,0)
-var iframe_active = false
-var iframe_counter = 0
+var iframes_active = false
+var iframes_counter = 0
 
 enum PlayerStates { UNLOCKED, DEAD }
 var current_state = PlayerStates.UNLOCKED
@@ -27,14 +27,14 @@ func get_input():
 	).normalized() * speed
 
 func process_iframes(delta):
-	if iframe_active:
-		iframe_counter += delta
+	if iframes_active:
+		iframes_counter += delta
 		var mat = sprite.get_material()
 		mat.set_shader_param("active", true)
-		if iframe_counter > self.iframe_time:
-			iframe_active = false
+		if iframes_counter > self.iframes_time:
+			iframes_active = false
 	else:
-		iframe_counter = 0
+		iframes_counter = 0
 		var mat = sprite.get_material()
 		mat.set_shader_param("active", false)
 	
@@ -45,9 +45,9 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity)
 
 func _on_hit(damageTaken, _attacker):
-	if not current_state == PlayerStates.DEAD:
+	if not current_state == PlayerStates.DEAD and not iframes_active:
 		self.health = max(self.health - damageTaken, 0)
 		if health <= 0:
 			current_state = PlayerStates.DEAD
 		else:
-			self.iframe_active = true
+			self.iframes_active = true
