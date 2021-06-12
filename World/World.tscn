@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/PlayerShoot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/PlayerMove.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Bounds.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/WorldUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/EnemyA.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
@@ -10,7 +11,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1.97931, 426.567, 0, 0, 0, 0, 93.9032, 344.542, 0, 0, 0, 0, 175.928, 423.738, 0, 0, 0, 0, 276.337, 343.128, 0, 0, 0, 0, 414.93, 426.567, 0, 0, 0, 0, 550.694, 344.542, 0, 0, 0, 0, 706.258, 422.324, 0, 0, 0, 0, 867.478, 345.957, 0, 0, 0, 0, 1024.46, 426.567, 0, 0, 0, 0, 868.244, 346.621, 0, 0, 0, 0, 706.792, 421.461, 0, 0, 0, 0, 551.226, 345.78, 0, 0, 0, 0, 415.001, 427.347, 0, 0, 0, 0, 276.253, 342.417, 0, 0, 0, 0, 176.186, 423.143, 0, 0, 0, 0, 92.9374, 346.621, 0, 0, 0, 0, 0.438789, 424.824, 0, 0, 0, 0, 1.97931, 426.567 )
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 
 [node name="PlayerMove" parent="." instance=ExtResource( 2 )]
 position = Vector2( 668.936, 165.594 )
@@ -30,3 +31,5 @@ curve = SubResource( 1 )
 position = Vector2( 1.97931, 426.567 )
 rotation = -0.728544
 speed = 80
+
+[node name="WorldUI" parent="." instance=ExtResource( 4 )]
