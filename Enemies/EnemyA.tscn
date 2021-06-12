@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemies/EnemyA.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.554688, 0.455017, 0.455017, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 20
+
+[node name="EnemyA" type="PathFollow2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Hitbox" type="KinematicBody2D" parent="."]
+position = Vector2( 0.0496063, 0 )
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 0.00861812 )
+scale = Vector2( 1, 19.9405 )
+texture = SubResource( 3 )
+
+[node name="HitBoxOut" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxOut"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="HitBoxOut" to="." method="_on_Hitbox_body_entered"]

@@ -4,7 +4,7 @@ export (int) var speed = 400
 export (int) var iframe_time = 2
 export (float) var blinking_speed = 0.05
 
-var projectile_speed = 100
+var projectile_speed = 400
 var projectile_damage = 10
 
 var velocity = Vector2(0,0)
