@@ -11,8 +11,8 @@ export (bool) var bounce_at_path_end = true
 export (Array, int) var shoot_points = []
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 var vertical_translation_offset = 0
-var projectile_speed = 400
-var projectile_damage = 10
+export (int) var projectile_speed = 400
+export (int) var projectile_damage = 10
 
 enum EnemyAStates { ENTER_STAGE, MOVING, SHOOTING, DEAD }
 const StateMachine = preload('res://Common/StateMachine.gd')
