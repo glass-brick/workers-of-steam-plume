@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/PlayerMove.gd" type="Script" id=1]
+[ext_resource path="res://Player/IframeShader.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/modulate = null
+shader_param/active = null
+shader_param/time_scale = 20.0
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 1 )
@@ -14,11 +21,12 @@ extents = Vector2( 21.4891, 30.3424 )
 
 [node name="PlayerShoot" type="KinematicBody2D"]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 12
 script = ExtResource( 1 )
 initial_state = 2
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 4 )
 scale = Vector2( 0.0209941, 60.6222 )
 texture = SubResource( 2 )
 

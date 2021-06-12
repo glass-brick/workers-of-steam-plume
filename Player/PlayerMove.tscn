@@ -27,6 +27,7 @@ extents = Vector2( 21.4891, 30.3424 )
 
 [node name="PlayerMove" type="KinematicBody2D"]
 material = SubResource( 1 )
+z_index = 1
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

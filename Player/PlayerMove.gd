@@ -27,6 +27,8 @@ const StateMachine = preload('res://Common/StateMachine.gd')
 onready var state_machine = StateMachine.new(PlayerStates, self)
 
 onready var sprite = $Sprite
+onready var player_shoot = get_node("/root/World/PlayerShoot")
+onready var initial_postition = self.position
 
 func _ready():
 	state_machine.set_state(initial_state)
@@ -52,15 +54,63 @@ func get_shoot_input(delta):
 
 	if shoot and shoot_counter == 0:
 		var direction = ( get_global_mouse_position() - global_position).normalized()
-
-		var projectile = projectileBase.instance()
-		projectile.speed = projectile_speed
-		projectile.damage = projectile_damage
-		projectile.direction = direction
-		get_node('/root/World').add_child(projectile)
-		projectile.global_position = global_position
+		
+		if state_machine.get_state() == PlayerStates.TRANSFORMED:
+			shoot_transformed_to(direction)
+		else:
+			shoot_to(direction)
 		shoot_counter += delta
 
+func shoot_to(direction):
+	var projectile = make_projectile_in_direction(direction)
+	get_node('/root/World').add_child(projectile)
+	projectile.global_position = global_position
+
+func make_projectile_in_direction(direction):
+	var projectile = projectileBase.instance()
+	projectile.speed = projectile_speed
+	projectile.damage = projectile_damage
+	projectile.direction = direction
+	return projectile
+
+
+func shoot_transformed_to(direction):
+	var projectile = make_projectile_in_direction(direction)
+	projectile.collision_mask = 6
+	projectile.collision_layer = 0
+	get_node('/root/World').add_child(projectile)
+	projectile.global_position = global_position
+
+	var projectile2 = make_projectile_in_direction(direction.rotated(PI/6))
+	projectile2.collision_mask = 6
+	projectile2.collision_layer = 0
+	get_node('/root/World').add_child(projectile2)
+	projectile2.global_position = global_position
+
+	var projectile3 = make_projectile_in_direction(direction.rotated(-PI/6))
+	projectile3.collision_mask = 6
+	projectile3.collision_layer = 0
+	get_node('/root/World').add_child(projectile3)
+	projectile3.global_position = global_position
+
+
+func get_transform_input():
+	if Input.is_action_pressed("transform"):
+		if self.state_machine.get_state() == PlayerStates.TRANSFORMED:
+			detransform()
+		else:
+			state_machine.set_state(PlayerStates.TRANSFORMED)
+
+func detransform():
+	state_machine.set_state(initial_state)
+	self.position = self.initial_postition
+
+func _process_transformed(delta, _meta):
+	get_move_input()
+	process_iframes(delta)
+	velocity = move_and_slide(velocity)
+	get_shoot_input(delta)
+	get_transform_input()
 
 func process_iframes(delta):
 	if iframes_active:
@@ -78,9 +128,14 @@ func _process_move(delta, _meta):
 	get_move_input()
 	process_iframes(delta)
 	velocity = move_and_slide(velocity)
+	get_transform_input()
 
 func _process_shoot(delta, _meta):
 	get_shoot_input(delta)
+	get_transform_input()
+
+func _on_transformed_start(_meta):
+	self.position = player_shoot.position
 	
 func _physics_process(delta):
 	state_machine.process_step(delta)
