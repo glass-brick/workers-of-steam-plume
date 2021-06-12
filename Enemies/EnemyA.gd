@@ -68,4 +68,5 @@ func _on_dead_start(_meta):
 # This hits the body that entered this enemy's body
 func _on_Hitbox_body_entered(body):
 	if not state_machine.get_state() == EnemyAStates.DEAD and body.has_method('_on_hit'):
-		body._on_hit(damage, self) # Replace with function body.
+		body._on_hit(damage, self) 
+
