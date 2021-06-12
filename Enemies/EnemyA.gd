@@ -8,6 +8,7 @@ export (int) var enter_speed = 40
 export (int) var speed = 40
 export (int) var damage = 40
 export (int) var vertical_speed = 15
+export (int) var vertical_offset_limit = 100
 export (bool) var bounce_at_path_end = true
 export (bool) var shoot_at_time = true
 export (Array, int) var shoot_points = []
@@ -23,6 +24,7 @@ enum EnemyAStates { ENTER_STAGE, MOVING, SHOOTING, DEAD }
 const StateMachine = preload('res://Common/StateMachine.gd')
 
 onready var state_machine = StateMachine.new(EnemyAStates, self)
+onready var path = get_parent()
 var target_position
 enum Sides { FORWARDS, BACKWARDS }
 export (Sides) var initial_direction = Sides.FORWARDS
@@ -53,10 +55,10 @@ func _process_moving(delta, _meta):
 	var side_multiplier = 1 if state_machine.current_side == StateMachine.Sides.FORWARDS else -1
 	var old_offset = get_offset()
 	var new_offset = old_offset + speed * delta * side_multiplier
-	var total_offset = get_parent().curve.get_baked_length()
+	var total_offset = path.curve.get_baked_length()
 	if bounce_at_path_end and (total_offset <= new_offset and side_multiplier == 1) or (new_offset <= 0 and side_multiplier == -1):
 		state_machine.flip_side()
-		if (shoot_points.has(0) and new_offset <= 0) or (shoot_points.has(get_parent().curve.get_point_count() - 1)and new_offset >= total_offset):
+		if (shoot_points.has(0) and new_offset <= 0) or (shoot_points.has(path.curve.get_point_count() - 1)and new_offset >= total_offset):
 			state_machine.set_state(EnemyAStates.SHOOTING)
 		return
 	
@@ -69,16 +71,9 @@ func _process_moving(delta, _meta):
 			move_timer = 0
 		else:
 			for id in shoot_points:
-				var shoot_point = get_parent().curve.get_point_position(id)
+				var shoot_point = path.curve.get_point_position(id)
 				if (shoot_point - position).length() < delta * speed / 2:
 					state_machine.set_state(EnemyAStates.SHOOTING)
-
-	
-	vertical_translation_offset += vertical_speed * delta
-	global_translate(Vector2(0,vertical_translation_offset))
-	# If we reach the end of the screen, start going back
-	if (global_position.y > 600 and vertical_speed > 0) or (global_position.y < 0 and vertical_speed < 0):
-		vertical_speed = -vertical_speed
 
 var shoot_timer = 0
 var shoot_time = 0.5
@@ -98,6 +93,12 @@ func _process_shooting(delta, _meta):
 		state_machine.set_state(EnemyAStates.MOVING)
 	
 func _physics_process(delta):
+	vertical_translation_offset = vertical_speed * delta
+	path.global_translate(Vector2(0,vertical_translation_offset))
+	# If we reach the end of the screen, start going back
+	if (path.global_position.y > vertical_offset_limit and vertical_speed > 0) or (path.global_position.y < 0 and vertical_speed < 0):
+		vertical_speed = -vertical_speed
+
 	state_machine.process_step(delta)
 	
 func _on_hit(_damageTaken, _attacker):
@@ -105,21 +106,19 @@ func _on_hit(_damageTaken, _attacker):
 		state_machine.set_state(EnemyAStates.DEAD)
 		
 func _on_dead_start(_meta):
-	if get_parent().get_child_count() == 1:
-		get_parent().queue_free()
+	if path.get_child_count() == 1:
+		path.queue_free()
 	else:
 		queue_free()
 
 func get_target_shoot_direction_from(initial_pos):
-	var direction
 	match target:
 		TargetOptions.MoveCart:
 			var player = get_node('/root/World/PlayerMove')
-			direction = ( player.global_position - initial_pos).normalized()
+			return (player.global_position - initial_pos).normalized()
 		TargetOptions.ShootCart:
 			var player = get_node('/root/World/PlayerShoot')
-			direction = ( player.global_position - initial_pos).normalized()
-	return direction
+			return (player.global_position - initial_pos).normalized()
 # This hits the body that entered this enemy's body
 func _on_Hitbox_body_entered(body):
 	if not state_machine.get_state() == EnemyAStates.DEAD and body.has_method('_on_hit'):

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Enemies/EnemyA.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/Pistolero.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 67.0151, -1.41581, -67.0151, 1.41581, 496.11, 20.0696, -0.943874, -16.0459, 0.943874, 16.0459, 273.882, 65.32, -0.943874, -21.2372, 0.943874, 21.2372, 764, 172, 25.0127, 0, -25.0127, 0, 524.363, 230.425, 0, 16.9897, 0, -16.9897, 279, 169, 0.943874, 15.102, -0.943874, -15.102, 763, 71, 78.3416, 1.41581, -78.3416, -1.41581, 497.609, 19.3204 )
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="PistoleroPath" type="Path2D" parent="."]
+position = Vector2( -3.33786e-06, 1.33481 )
+curve = SubResource( 1 )
+
+[node name="Pistolero" parent="PistoleroPath" instance=ExtResource( 1 )]
+modulate = Color( 0.768627, 0.145098, 0.145098, 1 )
+position = Vector2( 496.11, 20.0696 )
+rotation = 3.11035
+enter_speed = 20
+speed = 400
+vertical_speed = 30
+vertical_offset_limit = 400
+bounce_at_path_end = false
+target = 1
+
+[node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
+position = Vector2( 496.11, 20.0696 )
+rotation = 3.11035
+speed = 400
+bounce_at_path_end = false
+target = 1
