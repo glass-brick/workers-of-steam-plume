@@ -45,8 +45,8 @@ func process_step(delta):
 
 func set_side(side):
 	current_side = side
-	if entity.has_method('_on_flip_side'):
-		entity.call('_on_flip_side', current_side)
+	if entity.has_method('_on_side_change'):
+		entity.call('_on_side_change', current_side)
 
 
 func get_current_side():
