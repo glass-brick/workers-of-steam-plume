@@ -2,6 +2,8 @@ extends PathFollow2D
 
 export (int) var speed = 40
 export (int) var damage = 40
+export (int) var vertical_speed = 15
+var accumulated_offset = 0
 
 enum EnemyAStates { MOVING, DEAD }
 
@@ -35,6 +37,11 @@ func get_monster_state():
 
 func _process_moving(_delta, _meta):
 	self.set_offset(self.get_offset() + self.speed * _delta)
+	self.accumulated_offset += vertical_speed*_delta
+	self.global_translate(Vector2(0,self.accumulated_offset))
+	# If we reach the end of the screen, start going back
+	if self.global_position.y > 600 or self.global_position.y < 0:
+		vertical_speed = -vertical_speed
 	
 func _physics_process(delta):
 	var process_func = stateFunctions[current_state]["process"]
