@@ -51,6 +51,9 @@ func _process_enter_stage(delta, _meta):
 
 var move_timer = 0
 
+func _on_side_change(new_side):
+	scale.x = -1 if new_side == Sides.BACKWARDS else 1
+
 func _process_moving(delta, _meta):
 	var side_multiplier = 1 if state_machine.current_side == StateMachine.Sides.FORWARDS else -1
 	var old_offset = get_offset()
