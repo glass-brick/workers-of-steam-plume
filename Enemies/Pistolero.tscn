@@ -4,7 +4,7 @@
 [ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/pistolero_jetpack.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.5, 13.875 )
 
 [node name="Pistolero" type="PathFollow2D"]
@@ -27,7 +27,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( -0.125, -5 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]

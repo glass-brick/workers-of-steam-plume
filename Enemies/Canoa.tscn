@@ -4,28 +4,28 @@
 [ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/canoa_rifles.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 75.8868, 19.4757 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 152, 43 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
 region = Rect2( 152, 0, 152, 43 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
 region = Rect2( 304, 0, 152, 43 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
 region = Rect2( 456, 0, 152, 43 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -40,29 +40,30 @@ collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.528061, -1.47194 )
 rotation = 3.14159
-frames = SubResource( 8 )
+frames = SubResource( 6 )
+frame = 3
 playing = true
 
 [node name="SpriteGuy1" type="Sprite" parent="."]
-position = Vector2( 32.6704, -0.440872 )
+position = Vector2( 30.1448, -6.61442 )
 texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -11, -5 )
 region_enabled = true
-region_rect = Rect2( 12, 48, 24, 38 )
+region_rect = Rect2( 16, 48, 38, 25 )
 
 [node name="SpriteGuy2" type="Sprite" parent="."]
-position = Vector2( -3.64011, -0.536228 )
+position = Vector2( -9.25242, -6.70977 )
 texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -11, -5 )
 region_enabled = true
-region_rect = Rect2( 12, 48, 24, 38 )
+region_rect = Rect2( 16, 48, 38, 25 )
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]

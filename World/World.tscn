@@ -9,8 +9,8 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
-enemy_groups = [ ExtResource( 5 ), ExtResource( 5 ) ]
-max_time_intervals = [ 5, 5 ]
+enemy_groups = [ ExtResource( 5 ) ]
+max_time_intervals = [ 5 ]
 
 [node name="PlayerMove" parent="." instance=ExtResource( 2 )]
 position = Vector2( 668.936, 165.594 )

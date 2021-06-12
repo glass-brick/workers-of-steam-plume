@@ -13,7 +13,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 67.0151, -1.41581, -67.0151, 1.41581, 496.11, 20.0696, -0.943874, -16.0459, 0.943874, 16.0459, 158.242, 83.7476, -1.41581, -18.8775, 1.41581, 18.8775, 161.988, 164.656, -0.943874, -21.2372, 0.943874, 21.2372, 934.769, 237.774, -1.41581, -25.9565, 1.41581, 25.9565, 921.63, 395.396, 25.0127, 0, -25.0127, 0, 615.975, 501.026, 0.943874, 21.7091, -0.943874, -21.7091, 164.235, 396.145, 0, 16.9897, 0, -16.9897, 159.74, 223.839, -1.41581, 16.5178, 1.41581, -16.5178, 880.084, 179.882, 0.943874, 15.102, -0.943874, -15.102, 918.633, 96.4832, 78.3416, 1.41581, -78.3416, -1.41581, 497.609, 19.3204 )
+"points": PoolVector2Array( 67.0151, -1.41581, -67.0151, 1.41581, 496.11, 20.0696, -0.943874, -16.0459, 0.943874, 16.0459, 275, 67, -0.943874, -21.2372, 0.943874, 21.2372, 764, 172, 25.0127, 0, -25.0127, 0, 524.363, 230.425, 0, 16.9897, 0, -16.9897, 279, 169, 0.943874, 15.102, -0.943874, -15.102, 763, 71, 78.3416, 1.41581, -78.3416, -1.41581, 497.609, 19.3204 )
 }
 
 [node name="Node2D" type="Node2D"]
@@ -34,19 +34,7 @@ initial_direction = 1
 [node name="Canoa" parent="Path2D" instance=ExtResource( 5 )]
 position = Vector2( 41.8362, 52.9864 )
 rotation = 1.43321
-enter_direction = 0
-enter_speed = 40
-speed = 40
-damage = 40
-vertical_speed = 15
-bounce_at_path_end = true
-shoot_at_time = true
-shoot_points = [  ]
-shoot_interval_time = 1.0
-target = 0
-projectile_speed = 400
-projectile_damage = 10
-initial_direction = 0
+vertical_speed = 0
 
 [node name="Biker" parent="." instance=ExtResource( 2 )]
 position = Vector2( 274.401, 206.595 )
@@ -54,18 +42,18 @@ rotation = -2.778
 speed = 300
 
 [node name="PistoleroPath" type="Path2D" parent="."]
-position = Vector2( -64.2852, 42.4543 )
+position = Vector2( -64, 42 )
 curve = SubResource( 2 )
 
 [node name="Pistolero" parent="PistoleroPath" instance=ExtResource( 1 )]
 modulate = Color( 0.768627, 0.145098, 0.145098, 1 )
 position = Vector2( 496.11, 20.0696 )
-rotation = 3.10645
+rotation = 3.11035
 enter_speed = 20
 speed = 400
 target = 1
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
 position = Vector2( 496.11, 20.0696 )
-rotation = 3.10645
+rotation = 3.11035
 target = 1
