@@ -1,6 +1,7 @@
 [gd_scene format=2]
 
 [node name="Bounds" type="RigidBody2D"]
+collision_layer = 4
 mode = 1
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
