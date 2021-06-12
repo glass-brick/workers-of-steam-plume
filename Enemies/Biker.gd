@@ -67,4 +67,8 @@ func _on_dead_start(_meta):
 		
 func _physics_process(delta):
 	state_machine.process_step(delta)
+
+func _on_hit(_damageTaken, _attacker):
+	if not (state_machine.get_state() == BikerStates.DEAD):
+		state_machine.set_state(BikerStates.DEAD)
 	
