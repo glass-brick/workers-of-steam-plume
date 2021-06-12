@@ -18,7 +18,7 @@ extents = Vector2( 15.1443, 22.0878 )
 
 [node name="Biker" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -29,8 +29,9 @@ texture = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="HitboxOut" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxOut"]
 shape = SubResource( 4 )
+
+[connection signal="body_entered" from="HitboxOut" to="." method="_on_HitboxOut_body_entered"]

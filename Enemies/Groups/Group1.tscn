@@ -31,4 +31,4 @@ initial_direction = 1
 [node name="Biker" parent="." instance=ExtResource( 2 )]
 position = Vector2( 274.401, 206.595 )
 rotation = -2.778
-speed = 1000
+speed = 300

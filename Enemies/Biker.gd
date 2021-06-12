@@ -10,6 +10,7 @@ export (EnterOptions) var enter_direction = EnterOptions.TOP
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 export (int) var projectile_speed = 400
 export (int) var projectile_damage = 10
+export (int) var damage = 10
 
 var shoot_timer = 0
 var move_timer = 0
@@ -72,3 +73,8 @@ func _on_hit(_damageTaken, _attacker):
 	if not (state_machine.get_state() == BikerStates.DEAD):
 		state_machine.set_state(BikerStates.DEAD)
 	
+
+
+func _on_HitboxOut_body_entered(body):
+	if not state_machine.get_state() == BikerStates.DEAD and body.has_method('_on_hit'):
+		body._on_hit(damage, self) 
