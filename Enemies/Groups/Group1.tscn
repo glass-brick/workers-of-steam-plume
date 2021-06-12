@@ -24,7 +24,7 @@ curve = SubResource( 1 )
 [node name="Canoa" parent="CanoaPath" instance=ExtResource( 5 )]
 position = Vector2( 41.8362, 52.9864 )
 rotation = 0.655696
-enter_speed = 10
+enter_speed = 5
 speed = 50
 vertical_speed = 0
 
@@ -41,7 +41,7 @@ curve = SubResource( 2 )
 position = Vector2( 490.792, 112.481 )
 rotation = 0.1834
 offset = 448.88
-enter_speed = 20
+enter_speed = 5
 speed = 60
 target = 1
 
@@ -49,7 +49,7 @@ target = 1
 position = Vector2( 658.853, 39.9364 )
 rotation = -2.94821
 offset = 1835.74
-enter_speed = 20
+enter_speed = 5
 speed = 60
 target = 1
 
@@ -57,7 +57,7 @@ target = 1
 position = Vector2( 286.202, 175.398 )
 rotation = -2.67795
 offset = 1223.54
-enter_speed = 20
+enter_speed = 5
 speed = 60
 target = 1
 
@@ -65,7 +65,7 @@ target = 1
 position = Vector2( 730.781, 158.789 )
 rotation = 0.260602
 offset = 693.34
-enter_speed = 20
+enter_speed = 5
 speed = 60
 target = 1
 
@@ -73,6 +73,6 @@ target = 1
 position = Vector2( 334.891, 43.5386 )
 rotation = 2.90767
 offset = 163.14
-enter_speed = 20
+enter_speed = 5
 speed = 60
 target = 1
