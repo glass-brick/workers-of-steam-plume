@@ -39,6 +39,9 @@ func process_step(delta):
 		print('UNEXPECTED STATE:', current_state)
 	if entity.has_method(process_func):
 		entity.call(process_func, delta, current_metadata)
+	if entity.has_method("all_state_process"):
+		entity.call("all_state_process", delta, current_metadata)
+
 
 func set_side(side):
 	current_side = side

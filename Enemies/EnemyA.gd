@@ -83,15 +83,7 @@ func _process_moving(delta, _meta):
 var shoot_timer = 0
 var shoot_time = 0.5
 func _on_shooting_start(_meta):
-	var direction
-	match target:
-		TargetOptions.MoveCart:
-			var player = get_node('/root/World/PlayerMove')
-			direction = ( player.global_position - global_position).normalized()
-		TargetOptions.ShootCart:
-			var player = get_node('/root/World/PlayerShoot')
-			direction = ( player.global_position - global_position).normalized()
-
+	var direction = get_target_shoot_direction_from(global_position)
 	var projectile = projectileBase.instance()
 	projectile.speed = projectile_speed
 	projectile.damage = projectile_damage
@@ -118,6 +110,16 @@ func _on_dead_start(_meta):
 	else:
 		queue_free()
 
+func get_target_shoot_direction_from(initial_pos):
+	var direction
+	match target:
+		TargetOptions.MoveCart:
+			var player = get_node('/root/World/PlayerMove')
+			direction = ( player.global_position - initial_pos).normalized()
+		TargetOptions.ShootCart:
+			var player = get_node('/root/World/PlayerShoot')
+			direction = ( player.global_position - initial_pos).normalized()
+	return direction
 # This hits the body that entered this enemy's body
 func _on_Hitbox_body_entered(body):
 	if not state_machine.get_state() == EnemyAStates.DEAD and body.has_method('_on_hit'):
