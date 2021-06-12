@@ -1,6 +1,7 @@
 extends PathFollow2D
 
 enum EnterOptions { TOP, BOTTOM }
+enum TargetOptions {MoveCart, ShootCart}
 
 export (EnterOptions) var enter_direction = EnterOptions.TOP
 export (int) var enter_speed = 40
@@ -8,7 +9,11 @@ export (int) var speed = 40
 export (int) var damage = 40
 export (int) var vertical_speed = 15
 export (bool) var bounce_at_path_end = true
+export (bool) var shoot_at_time = true
 export (Array, int) var shoot_points = []
+export (float) var shoot_interval_time = 1.0
+export (TargetOptions) var target = TargetOptions.MoveCart
+
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 var vertical_translation_offset = 0
 export (int) var projectile_speed = 400
@@ -42,6 +47,7 @@ func _process_enter_stage(delta, _meta):
 	if(position == target_position):
 		state_machine.set_state(EnemyAStates.MOVING)
 
+var move_timer = 0
 
 func _process_moving(delta, _meta):
 	var side_multiplier = 1 if state_machine.current_side == StateMachine.Sides.FORWARDS else -1
@@ -56,10 +62,17 @@ func _process_moving(delta, _meta):
 	
 	set_offset(new_offset)
 	
-	for id in shoot_points:
-		var shoot_point = get_parent().curve.get_point_position(id)
-		if (shoot_point - position).length() < delta * speed / 2:
+	if shoot_at_time:
+		move_timer += delta
+		if shoot_interval_time < move_timer:
 			state_machine.set_state(EnemyAStates.SHOOTING)
+			move_timer = 0
+		else:
+			for id in shoot_points:
+				var shoot_point = get_parent().curve.get_point_position(id)
+				if (shoot_point - position).length() < delta * speed / 2:
+					state_machine.set_state(EnemyAStates.SHOOTING)
+
 	
 	vertical_translation_offset += vertical_speed * delta
 	global_translate(Vector2(0,vertical_translation_offset))
@@ -70,8 +83,15 @@ func _process_moving(delta, _meta):
 var shoot_timer = 0
 var shoot_time = 0.5
 func _on_shooting_start(_meta):
-	var player = get_node('/root/World/PlayerMove')
-	var direction = ( player.global_position - global_position).normalized()
+	var direction
+	match target:
+		TargetOptions.MoveCart:
+			var player = get_node('/root/World/PlayerMove')
+			direction = ( player.global_position - global_position).normalized()
+		TargetOptions.ShootCart:
+			var player = get_node('/root/World/PlayerShoot')
+			direction = ( player.global_position - global_position).normalized()
+
 	var projectile = projectileBase.instance()
 	projectile.speed = projectile_speed
 	projectile.damage = projectile_damage
