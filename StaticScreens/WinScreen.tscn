@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://StaticScreens/Screen.gd" type="Script" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 274.241
+margin_top = 104.839
+margin_right = 388.241
+margin_bottom = 118.839
+rect_scale = Vector2( 4, 4 )
+text = "A WINNER IS YOU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 363.453
+margin_top = 289.914
+margin_right = 649.453
+margin_bottom = 462.914
+text = "yeah lets play again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Button" to="." method="goto" binds= [ "res://World/World.tscn" ]]

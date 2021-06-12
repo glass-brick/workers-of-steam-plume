@@ -52,6 +52,10 @@ func _process_unlocked(delta, _meta):
 func _physics_process(delta):
 	state_machine.process_step(delta)
 
+func _on_dead_start(_meta):
+	yield(get_tree().create_timer(0.5), "timeout")
+	get_node('/root/SceneManager').goto_scene('res://StaticScreens/LoseScreen.tscn')
+
 func _on_hit(damageTaken, _attacker):
 	if not state_machine.get_state() == PlayerStates.DEAD and not iframes_active:
 		self.health = max(self.health - damageTaken, 0)

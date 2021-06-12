@@ -76,7 +76,7 @@ func _on_shooting_start(_meta):
 	projectile.speed = projectile_speed
 	projectile.damage = projectile_damage
 	projectile.direction = direction
-	get_tree().get_root().add_child(projectile)
+	get_node('/root/World').add_child(projectile)
 	projectile.global_position = global_position
 	shoot_timer = 0
 
@@ -93,7 +93,10 @@ func _on_hit(_damageTaken, _attacker):
 		state_machine.set_state(EnemyAStates.DEAD)
 		
 func _on_dead_start(_meta):
-	queue_free()
+	if get_parent().get_child_count() == 1:
+		get_parent().queue_free()
+	else:
+		queue_free()
 
 # This hits the body that entered this enemy's body
 func _on_Hitbox_body_entered(body):

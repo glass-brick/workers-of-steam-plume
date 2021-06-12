@@ -50,7 +50,7 @@ func _on_shooting_start(_meta):
 	projectile.speed = projectile_speed
 	projectile.damage = projectile_damage
 	projectile.direction = direction
-	get_tree().get_root().add_child(projectile)
+	get_node('/root/World').add_child(projectile)
 	projectile.global_position = global_position
 	shoot_timer = 0
 
