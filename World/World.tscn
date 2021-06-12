@@ -4,14 +4,13 @@
 [ext_resource path="res://Player/PlayerMove.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Bounds.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World/WorldUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/EnemyA.tscn" type="PackedScene" id=6]
-
-[sub_resource type="Curve2D" id=1]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 5.97668, 416.398, 0, 0, 0, 0, 93.9032, 344.542, 0, 0, 0, 0, 175.928, 423.738, 0, 0, 0, 0, 276.337, 343.128, 0, 0, 0, 0, 414.93, 426.567, 0, 0, 0, 0, 550.694, 344.542, 0, 0, 0, 0, 706.258, 422.324, 0, 0, 0, 0, 867.478, 345.957, 0, 0, 0, 0, 1018.54, 424.644, 0, 0, 0, 0, 868.244, 346.621, 0, 0, 0, 0, 706.792, 421.461, 0, 0, 0, 0, 551.226, 345.78, 0, 0, 0, 0, 415.001, 427.347, 0, 0, 0, 0, 276.253, 342.417, 0, 0, 0, 0, 176.186, 423.143, 0, 0, 0, 0, 92.9374, 346.621, 0, 0, 0, 0, 20.8427, 424.421, 0, 0, 0, 0, 5.81958, 415.517 )
-}
+[ext_resource path="res://Enemies/Groups/Group1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/World.gd" type="Script" id=6]
 
 [node name="World" type="Node2D"]
+script = ExtResource( 6 )
+enemy_groups = [ ExtResource( 5 ), ExtResource( 5 ) ]
+max_time_intervals = [ 5, 5 ]
 
 [node name="PlayerMove" parent="." instance=ExtResource( 2 )]
 position = Vector2( 668.936, 165.594 )
@@ -20,18 +19,5 @@ position = Vector2( 668.936, 165.594 )
 position = Vector2( 538.409, 288.365 )
 
 [node name="Bounds" parent="." instance=ExtResource( 3 )]
-
-[node name="Paths" type="Node2D" parent="."]
-
-[node name="PathEnemyA" type="Path2D" parent="Paths"]
-position = Vector2( -0.942261, -338.425 )
-curve = SubResource( 1 )
-
-[node name="EnemyA" parent="Paths/PathEnemyA" instance=ExtResource( 6 )]
-position = Vector2( 16.8017, 422.026 )
-rotation = -2.60658
-offset = 2375.05
-cubic_interp = false
-speed = 80
 
 [node name="WorldUI" parent="." instance=ExtResource( 4 )]

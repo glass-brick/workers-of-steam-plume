@@ -8,9 +8,19 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Common/StateMachine.gd"
+} ]
+_global_script_class_icons={
+"StateMachine": ""
+}
+
 [application]
 
-config/name="Godot Projects"
+config/name="GMTK2021"
 run/main_scene="res://World/World.tscn"
 config/icon="res://icon.png"
 

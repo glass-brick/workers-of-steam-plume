@@ -12,9 +12,14 @@ var iframes_active = false
 var iframes_counter = 0
 
 enum PlayerStates { UNLOCKED, DEAD }
-var current_state = PlayerStates.UNLOCKED
+
+const StateMachine = preload('res://Common/StateMachine.gd')
+onready var state_machine = StateMachine.new(PlayerStates, self)
 
 onready var sprite = $Sprite
+
+func _ready():
+	state_machine.set_state(PlayerStates.UNLOCKED)
 
 func get_input():
 	var right = Input.is_action_pressed('ui_right')
@@ -39,16 +44,18 @@ func process_iframes(delta):
 		var mat = sprite.get_material()
 		mat.set_shader_param("active", false)
 	
+func _process_unlocked(delta, _meta):
+	get_input()
+	process_iframes(delta)
+	velocity = move_and_slide(velocity)
+
 func _physics_process(delta):
-	if current_state == PlayerStates.UNLOCKED:
-		get_input()
-		process_iframes(delta)
-		velocity = move_and_slide(velocity)
+	state_machine.process_step(delta)
 
 func _on_hit(damageTaken, _attacker):
-	if not current_state == PlayerStates.DEAD and not iframes_active:
+	if not state_machine.get_state() == PlayerStates.DEAD and not iframes_active:
 		self.health = max(self.health - damageTaken, 0)
 		if health <= 0:
-			current_state = PlayerStates.DEAD
+			state_machine.set_state(PlayerStates.DEAD)
 		else:
 			self.iframes_active = true
