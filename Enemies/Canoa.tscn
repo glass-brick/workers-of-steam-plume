@@ -46,6 +46,7 @@ shape = SubResource( 3 )
 position = Vector2( 0.528061, -1.47194 )
 rotation = 3.14159
 frames = SubResource( 8 )
+frame = 3
 playing = true
 
 [node name="SpriteGuy1" type="Sprite" parent="."]

@@ -34,19 +34,6 @@ initial_direction = 1
 [node name="Canoa" parent="Path2D" instance=ExtResource( 5 )]
 position = Vector2( 41.8362, 52.9864 )
 rotation = 1.43321
-enter_direction = 0
-enter_speed = 40
-speed = 40
-damage = 40
-vertical_speed = 15
-bounce_at_path_end = true
-shoot_at_time = true
-shoot_points = [  ]
-shoot_interval_time = 1.0
-target = 0
-projectile_speed = 400
-projectile_damage = 10
-initial_direction = 0
 
 [node name="Biker" parent="." instance=ExtResource( 2 )]
 position = Vector2( 274.401, 206.595 )
