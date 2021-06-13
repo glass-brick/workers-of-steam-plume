@@ -18,7 +18,7 @@ func _ready():
 	var state = sceneManager.load()
 	if state.has("current_group_index"):
 		current_group_index = state["current_group_index"]
-		groups_defeated = state["current_group_index"]
+		groups_defeated = state["current_group_index"] + 1
 
 func start_group():
 	var enemy_group_scene = enemy_groups[current_group_index].instance()
