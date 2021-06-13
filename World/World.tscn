@@ -79,4 +79,6 @@ scroll_speed = -0.03
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
+stream = ExtResource( 23 )
+volume_db = -10.0
 autoplay = true

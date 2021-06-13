@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/PlayerMove.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player_caldera_turret.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/player_caldera.png" type="Texture" id=3]
 [ext_resource path="res://Player/IframeShader.shader" type="Shader" id=4]
+[ext_resource path="res://Sounds/player_cannon.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33.3504, 33.4831 )
@@ -75,7 +76,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 2 )
 frames = SubResource( 6 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -98,3 +99,6 @@ rotation = 1.5708
 z_index = 1
 frames = SubResource( 11 )
 offset = Vector2( -0.523441, -9.36222 )
+
+[node name="disparo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explosion_grande.wav-834c7a3f66da5f3133ddafd10d23beeb.sample"
+
+[deps]
+
+source_file="res://Sounds/explosion_grande.wav"
+dest_files=[ "res://.import/explosion_grande.wav-834c7a3f66da5f3133ddafd10d23beeb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

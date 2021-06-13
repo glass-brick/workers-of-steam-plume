@@ -53,6 +53,8 @@ func _on_moving_start(_meta):
 	move_timer = 0
 
 func _on_shooting_start(_meta):
+	if $disparo:
+		$disparo.play()
 	var player = get_node('/root/World/PlayerMove')
 	var direction = ( player.global_position - global_position)
 	direction.y = 0
@@ -75,6 +77,8 @@ func _process_shooting(delta, _meta):
 		state_machine.set_state(BikerStates.MOVING)
 
 func _on_dead_start(_meta):
+	if $muerte:
+		$muerte.play()
 	emit_signal("died")
 	collision_layer = 0
 	for child in get_children():

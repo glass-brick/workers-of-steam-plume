@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/canoa_descontrol.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/OutOfControl.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/explosion_grande.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/canoa_descontrol_constante.wav" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -57,5 +59,12 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 64.52
 linear_accel = -45.16
 linear_accel_random = 0.48
+
+[node name="constante" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="HitboxOut" to="." method="_on_HitboxOut_body_entered"]

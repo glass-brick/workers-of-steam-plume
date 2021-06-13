@@ -108,6 +108,8 @@ func shoot():
 	projectile.global_position = global_position
 
 func _on_shooting_start(_meta):
+	if $disparo:
+		$disparo.play()
 	shoot()
 	shoot_timer = 0
 	spread_shot = 1
@@ -163,6 +165,8 @@ func _on_hit(_damageTaken, _attacker):
 		
 func _on_dead_start(_meta):
 	emit_signal("died")
+	if $muerte:
+		$muerte.play()
 	for child in get_children():
 		if child is CPUParticles2D:
 			child.emitting = false

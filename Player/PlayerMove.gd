@@ -65,6 +65,8 @@ func get_shoot_input(delta):
 		shoot_counter += delta
 
 	if shoot and shoot_counter == 0:
+		if $disparo:
+			$disparo.play()
 		$Cannon.play("shoot")
 		var direction = ( mouse_position - global_position).normalized()
 		
@@ -206,6 +208,8 @@ func _physics_process(delta):
 	state_machine.process_step(delta)
 
 func _on_dead_start(_meta):
+	if $muerte:
+		$muerte.play()
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_node('/root/SceneManager').goto_scene('res://StaticScreens/LoseScreen.tscn')
 

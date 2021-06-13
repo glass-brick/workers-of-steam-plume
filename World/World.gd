@@ -33,7 +33,7 @@ func _on_group_finish(index):
 	if is_old_group:
 		return
 	var has_next_group = enemy_groups.size() > current_group_index + 1
-	if has_next_group:
+	if groups_defeated == current_group_index + 1 and has_next_group:
 		current_group_index += 1
 		call_deferred("start_group")
 		sceneManager.save({ "current_group_index": current_group_index - current_group_index % groups_between_saves })
