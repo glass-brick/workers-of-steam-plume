@@ -54,6 +54,12 @@ func _process_enter_stage(delta, _meta):
 
 
 func _on_dead_start(_meta):
+	for child in get_children():
+		if child is CPUParticles2D:
+			child.emitting = false
+		else:
+			child.visible = false
+	yield(get_tree().create_timer(2), "timeout")
 	queue_free()
 		
 func _physics_process(delta):

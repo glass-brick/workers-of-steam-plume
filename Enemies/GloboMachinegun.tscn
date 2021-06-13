@@ -40,5 +40,19 @@ position = Vector2( -0.0518799, 0.0296631 )
 texture = ExtResource( 4 )
 offset = Vector2( -0.509827, 15.5435 )
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+amount = 500
+speed_scale = 0.5
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 6.5
+direction = Vector2( 0, -1 )
+spread = 14.03
+gravity = Vector2( 0, 0 )
+initial_velocity = 64.52
+linear_accel = -45.16
+linear_accel_random = 0.48
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]

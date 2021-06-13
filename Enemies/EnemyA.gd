@@ -159,6 +159,12 @@ func _on_hit(_damageTaken, _attacker):
 			state_machine.set_state(EnemyAStates.DEAD)
 		
 func _on_dead_start(_meta):
+	for child in get_children():
+		if child is CPUParticles2D:
+			child.emitting = false
+		else:
+			child.visible = false
+	yield(get_tree().create_timer(2), "timeout")
 	if path.get_child_count() == 1:
 		path.queue_free()
 	else:
