@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/transformed.wav-01740a7909d758eec4b611a5f7ea45a8.sample"
+path="res://.import/perder.wav-c15085536b9d68b9cadeab169c2d9f80.sample"
 
 [deps]
 
-source_file="res://Music/transformed.wav"
-dest_files=[ "res://.import/transformed.wav-01740a7909d758eec4b611a5f7ea45a8.sample" ]
+source_file="res://Music/perder.wav"
+dest_files=[ "res://.import/perder.wav-c15085536b9d68b9cadeab169c2d9f80.sample" ]
 
 [params]
 
