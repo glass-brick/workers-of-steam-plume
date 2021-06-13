@@ -35,7 +35,7 @@ func _on_group_finish(index):
 	var has_next_group = enemy_groups.size() > current_group_index + 1
 	if has_next_group:
 		current_group_index += 1
-		start_group()
+		call_deferred("start_group")
 		sceneManager.save({ "current_group_index": current_group_index - current_group_index % groups_between_saves })
 	
 	if groups_defeated == enemy_groups.size():
@@ -47,7 +47,7 @@ func process_initial_cooldown(delta):
 		time_to_first -= delta
 		return
 	elif not initialized:
-		start_group()
+		call_deferred("start_group")
 		initialized = true
 
 func _process(delta):

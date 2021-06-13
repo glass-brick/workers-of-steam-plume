@@ -39,5 +39,6 @@ animations = [ {
 } ]
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
+scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
 animation = "explosion"
