@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Enemies/Biker.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=2]
 [ext_resource path="res://Sprites/motoquero.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/motoquero_muerte.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/pistol.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/motoquero_ingreso.wav" type="AudioStream" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -62,5 +65,14 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 64.52
 linear_accel = -45.16
 linear_accel_random = 0.48
+
+[node name="ingreso" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="ataque" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="body_entered" from="HitboxOut" to="." method="_on_HitboxOut_body_entered"]
