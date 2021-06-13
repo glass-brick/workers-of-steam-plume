@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://StaticScreens/Screen.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/MateSC-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Fonts/MateSC-Regular.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Music/perder.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -35,6 +36,8 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
 autoplay = true
 
 [connection signal="button_down" from="Button" to="." method="goto" binds= [ "res://World/World.tscn" ]]

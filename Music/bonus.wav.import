@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/transformed.wav-01740a7909d758eec4b611a5f7ea45a8.sample"
+path="res://.import/bonus.wav-078eb2c223d367fbf868562dc5325de6.sample"
 
 [deps]
 
-source_file="res://Music/transformed.wav"
-dest_files=[ "res://.import/transformed.wav-01740a7909d758eec4b611a5f7ea45a8.sample" ]
+source_file="res://Music/bonus.wav"
+dest_files=[ "res://.import/bonus.wav-078eb2c223d367fbf868562dc5325de6.sample" ]
 
 [params]
 
