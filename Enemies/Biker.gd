@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal died
+
 enum EnterOptions { TOP, BOTTOM }
 
 export (int) var speed = 20
@@ -73,6 +75,7 @@ func _process_shooting(delta, _meta):
 		state_machine.set_state(BikerStates.MOVING)
 
 func _on_dead_start(_meta):
+	emit_signal("died")
 	collision_layer = 0
 	for child in get_children():
 		if child is CPUParticles2D:

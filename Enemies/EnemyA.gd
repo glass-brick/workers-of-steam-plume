@@ -1,5 +1,7 @@
 extends PathFollow2D
 
+signal died
+
 enum EnterOptions { TOP, BOTTOM }
 enum TargetOptions {MoveCart, ShootCart}
 
@@ -160,6 +162,7 @@ func _on_hit(_damageTaken, _attacker):
 			state_machine.set_state(EnemyAStates.DEAD)
 		
 func _on_dead_start(_meta):
+	emit_signal("died")
 	for child in get_children():
 		if child is CPUParticles2D:
 			child.emitting = false
