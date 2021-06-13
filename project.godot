@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GMTK2021"
+config/name="Workers of the Steam Plume, United!"
 run/main_scene="res://StaticScreens/InitialScreen.tscn"
 config/icon="res://icon.png"
 
