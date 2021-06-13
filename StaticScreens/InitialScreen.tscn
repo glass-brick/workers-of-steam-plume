@@ -27,5 +27,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
 
 [connection signal="button_down" from="Button" to="." method="goto" binds= [ "res://World/World.tscn" ]]

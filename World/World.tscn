@@ -62,3 +62,4 @@ scroll_speed = -0.03
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
+autoplay = true

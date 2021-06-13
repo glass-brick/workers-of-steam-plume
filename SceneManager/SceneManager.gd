@@ -55,6 +55,6 @@ func _deferred_goto_scene(path):
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name):
-	if following_scene != "":
+	if following_scene != null:
 		call_deferred("_deferred_goto_scene", following_scene)
-	following_scene = ""
+	following_scene = null
