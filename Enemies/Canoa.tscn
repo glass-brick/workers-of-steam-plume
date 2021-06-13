@@ -45,6 +45,7 @@ lookahead = 0.001
 script = ExtResource( 1 )
 enter_speed = 10
 damage = 20
+reward_points = 15
 health = 60
 damage_show_time = 0.5
 

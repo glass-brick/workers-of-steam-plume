@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=1]
+[ext_resource path="res://Enemies/Biker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/GloboMachinegun.tscn" type="PackedScene" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0.943874, 15.102, -0.943874, -15.102, 574.265, 592.616, 0.242348, -0.269785, -0.242348, 0.269785, 571.285, 17.5457 )
+}
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Biker" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+position = Vector2( 983.765, 113.917 )
+rotation = -2.778
+
+[node name="globopumpumPath" type="Path2D" parent="."]
+position = Vector2( 380.997, 7.97185 )
+curve = SubResource( 2 )
+
+[node name="GloboChinegun" parent="globopumpumPath" instance=ExtResource( 6 )]
+position = Vector2( 571.285, 17.5458 )
+rotation = -1.5708
+offset = 575.43
+initial_direction = 1
+
+[node name="globopumpumPath2" type="Path2D" parent="."]
+position = Vector2( -501.536, 10.0907 )
+curve = SubResource( 2 )
+
+[node name="GloboChinegun" parent="globopumpumPath2" instance=ExtResource( 6 )]
+position = Vector2( 571.285, 17.5458 )
+rotation = -1.5708
+offset = 575.43
+initial_direction = 1
+
+[node name="Biker2" parent="." instance=ExtResource( 2 )]
+material = SubResource( 3 )
+position = Vector2( 256.39, 48.7353 )
+rotation = 2.74526
+
+[node name="Biker3" parent="." instance=ExtResource( 2 )]
+material = SubResource( 3 )
+position = Vector2( 438.618, 47.6759 )
+rotation = 3.37976
+
+[node name="Biker4" parent="." instance=ExtResource( 2 )]
+material = SubResource( 3 )
+position = Vector2( 692.889, 43.438 )
+rotation = 2.07152
