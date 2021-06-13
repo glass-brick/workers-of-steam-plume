@@ -102,3 +102,4 @@ offset = Vector2( -0.523441, -9.36222 )
 
 [node name="disparo" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+volume_db = -6.0
