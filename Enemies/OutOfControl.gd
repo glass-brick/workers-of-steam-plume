@@ -58,6 +58,8 @@ func _process_enter_stage(delta, _meta):
 
 func _on_dead_start(_meta):
 	emit_signal("died")
+	if $muerte:
+		$muerte.play()
 	collision_layer = 0
 	for child in get_children():
 		if child is CPUParticles2D:

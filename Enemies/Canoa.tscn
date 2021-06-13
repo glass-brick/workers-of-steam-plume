@@ -64,7 +64,6 @@ material = ExtResource( 5 )
 position = Vector2( 0.528061, -1.47194 )
 rotation = 3.14159
 frames = SubResource( 7 )
-frame = 2
 playing = true
 
 [node name="SpriteGuy1" type="Sprite" parent="."]
@@ -102,6 +101,7 @@ linear_accel_random = 0.48
 
 [node name="constante" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+autoplay = true
 
 [node name="muerte" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )

@@ -87,6 +87,7 @@ linear_accel_random = 0.48
 
 [node name="constante" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+autoplay = true
 
 [node name="disparo" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
