@@ -16,12 +16,12 @@ position = Vector2( -64.2852, 42.4543 )
 curve = SubResource( 1 )
 
 [node name="Pistolero" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 273.659, 436.589 )
-rotation = -2.88904
+position = Vector2( 273.663, 436.59 )
+rotation = -2.88099
 offset = 2107.55
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 667.886, 198.94 )
+position = Vector2( 667.884, 198.94 )
 rotation = -0.0312398
 offset = 2906.97
 initial_direction = 1

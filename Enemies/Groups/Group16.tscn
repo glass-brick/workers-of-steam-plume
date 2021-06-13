@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/Topadora.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 84.3826, 53.6312, 0, 0, 0, 0, 928.668, 57.8739, 0, 0, 0, 0, 935.739, 134.241, 0, 0, 0, 0, 84.3826, 131.413, 0, 0, 0, 0, 87.211, 217.68, 0, 0, 0, 0, 930.082, 220.508, 0, 0, 0, 0, 934.325, 303.947, 0, 0, 0, 0, 82.9683, 301.119, 0, 0, 0, 0, 84.3826, 388.8, 0, 0, 0, 0, 934.325, 388.8, 0, 0, 0, 0, 939.982, 501.937, 0, 0, 0, 0, 92.8679, 497.694, 0, 0, 0, 0, 85.7968, 551.434, 0, 0, 0, 0, 937.153, 568.405, 0, 0, 0, 0, 935.533, 62.6369, 0, 0, 0, 0, 84.3826, 53.6312 )
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TopadoraPath" type="Path2D" parent="."]
+position = Vector2( 4.24268, 1.41422 )
+curve = SubResource( 1 )
+
+[node name="Topadora" parent="TopadoraPath" instance=ExtResource( 7 )]
+position = Vector2( 84.3826, 53.6312 )
+rotation = 0.00769216

@@ -5,7 +5,7 @@
 [ext_resource path="res://Enemies/Canoa.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/OutOfControl.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array( 84.0151, 3.58419, -84.0151, -3.58419, 570.285, 16.5457, -0.943874, -16.0459, 0.943874, 16.0459, 158.242, 83.7476, -1.41581, -18.8775, 1.41581, 18.8775, 161.988, 164.656, -0.943874, -21.2372, 0.943874, 21.2372, 934.769, 237.774, -1.41581, -25.9565, 1.41581, 25.9565, 921.63, 395.396, 25.0127, 0, -25.0127, 0, 555.307, 500.819, 0.943874, 21.7091, -0.943874, -21.7091, 164.235, 396.145, 0, 16.9897, 0, -16.9897, 159.74, 223.839, -1.41581, 16.5178, 1.41581, -16.5178, 930.56, 182.437, 0.943874, 15.102, -0.943874, -15.102, 931.309, 88.044, 78.3416, 1.41581, -78.3416, -1.41581, 571.285, 17.5457 )
 }
@@ -20,7 +20,7 @@ script = ExtResource( 3 )
 
 [node name="PistoleroPath" type="Path2D" parent="."]
 position = Vector2( -64.2852, 42.4543 )
-curve = SubResource( 1 )
+curve = SubResource( 3 )
 
 [node name="Pistolero" parent="PistoleroPath" instance=ExtResource( 4 )]
 position = Vector2( 164.064, 79.1554 )
@@ -38,8 +38,8 @@ vertical_offset_limit = 0
 initial_direction = 1
 
 [node name="Pistolero3" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 751.003, 42.1234 )
-rotation = -2.95222
+position = Vector2( 751.001, 42.1231 )
+rotation = -2.97406
 offset = 3452.03
 vertical_speed = 0
 vertical_offset_limit = 0
@@ -54,7 +54,7 @@ vertical_offset_limit = 0
 initial_direction = 1
 
 [node name="Pistolero5" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 206.066, 173.639 )
+position = Vector2( 206.065, 173.638 )
 rotation = 0.108942
 offset = 545.057
 vertical_speed = 0

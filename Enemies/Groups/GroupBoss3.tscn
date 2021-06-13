@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=1]
+[ext_resource path="res://Enemies/Biker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Biker" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+position = Vector2( 806.136, 40.9606 )
+rotation = -2.96469
+
+[node name="Biker2" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+position = Vector2( 553.12, 30.2698 )
+rotation = -3.0782
+
+[node name="Biker3" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+position = Vector2( 23.9266, 191.522 )
+rotation = -4.31384
