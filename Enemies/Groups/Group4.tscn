@@ -25,10 +25,8 @@ script = ExtResource( 3 )
 material = SubResource( 1 )
 position = Vector2( 900, 30 )
 rotation = -2.44346
-speed = 300
 
 [node name="Biker2" parent="." instance=ExtResource( 2 )]
 material = SubResource( 2 )
 position = Vector2( 80, 30 )
 rotation = 2.44346
-speed = 300
