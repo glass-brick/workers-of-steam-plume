@@ -65,7 +65,7 @@ position = Vector2( 68.2039, 46.7955 )
 rotation = 1.60132
 
 [node name="globopumpumPath" type="Path2D" parent="."]
-position = Vector2( 380.997, 7.97185 )
+position = Vector2( 120.369, 9.0313 )
 curve = SubResource( 3 )
 
 [node name="GloboChinegun" parent="globopumpumPath" instance=ExtResource( 6 )]
