@@ -5,6 +5,8 @@ var current_scene = null
 var audio_player = null
 var current_scene_default_stream = null
 
+var save_state = {}
+
 onready var animation_player = $AnimationPlayer
 
 func _ready():
@@ -12,6 +14,12 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	get_music_player()
 	animation_player.play("Fade")
+
+func save(state):
+	save_state = state
+
+func load():
+	return save_state
 
 func goto_scene(path):
 	following_scene = path

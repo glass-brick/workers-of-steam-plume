@@ -16,8 +16,8 @@ anchor_right = 1.0
 margin_top = 108.502
 margin_bottom = 245.502
 custom_fonts/font = ExtResource( 3 )
-text = "A lifetime of exploitaion
-awaits you, unless..."
+text = "Don't give up yet.
+Our fate rests on this."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -29,7 +29,7 @@ anchor_top = 0.505
 anchor_right = 0.732
 anchor_bottom = 0.742
 custom_fonts/font = SubResource( 1 )
-text = "Attempt a new escape"
+text = "Try again"
 __meta__ = {
 "_edit_use_anchors_": false
 }

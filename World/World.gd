@@ -8,8 +8,16 @@ var initialized = false
 var current_group_index = 0
 var time_since_last_group = 0
 var instanced_groups = []
+var groups_between_saves = 2
 
 var groups_defeated = 0
+
+onready var sceneManager = get_node('/root/SceneManager')
+
+func _ready():
+	var state = sceneManager.load()
+	if state.has("current_group_index"):
+		current_group_index = state["current_group_index"]
 
 func start_group():
 	var enemy_group_scene = enemy_groups[current_group_index].instance()
@@ -28,10 +36,11 @@ func _on_group_finish(index):
 	if has_next_group:
 		current_group_index += 1
 		start_group()
+		sceneManager.save({ "current_group_index": current_group_index - current_group_index % groups_between_saves })
 	
 	if groups_defeated == enemy_groups.size():
 		yield(get_tree().create_timer(0.5), "timeout")
-		get_node('/root/SceneManager').goto_scene('res://StaticScreens/WinScreen.tscn')
+		sceneManager.goto_scene('res://StaticScreens/WinScreen.tscn')
 
 func process_initial_cooldown(delta):
 	if time_to_first > 0:

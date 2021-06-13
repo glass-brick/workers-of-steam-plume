@@ -93,7 +93,7 @@ disabled = true
 visible = false
 position = Vector2( -1.4142, 10.6066 )
 frames = SubResource( 7 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
