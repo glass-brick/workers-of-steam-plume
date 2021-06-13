@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/motoquero.png-573d1f53d85fdcc9eb346cfe74e2a434.stex"
+path="res://.import/bullet_player.png-4a53fdc1c6cdc176bc8da8da70f6c91d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/motoquero.png"
-dest_files=[ "res://.import/motoquero.png-573d1f53d85fdcc9eb346cfe74e2a434.stex" ]
+source_file="res://Sprites/bullet_player.png"
+dest_files=[ "res://.import/bullet_player.png-4a53fdc1c6cdc176bc8da8da70f6c91d.stex" ]
 
 [params]
 

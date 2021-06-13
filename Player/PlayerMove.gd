@@ -72,6 +72,7 @@ func shoot_to(direction):
 	var projectile = make_projectile_in_direction(direction)
 	get_node('/root/World').add_child(projectile)
 	projectile.global_position = global_position
+	projectile.rotation = direction.angle() + PI/2
 
 func make_projectile_in_direction(direction):
 	var projectile = projectileBase.instance()

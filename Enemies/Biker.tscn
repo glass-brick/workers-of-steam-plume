@@ -1,15 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/Biker.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=2]
+[ext_resource path="res://Sprites/motoquero.png" type="Texture" id=3]
 
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.821192, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.189259, 0.189259, 0.189259, 1, 0.230469, 0.230469, 0.230469, 1 )
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 44, 43 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-width = 30
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 44, 0, 44, 43 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 14.9596, 22.0489 )
@@ -22,11 +31,12 @@ material = ExtResource( 2 )
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 1 )
+damage_show_time = 0.3
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 2 )
-scale = Vector2( 1, 43.9601 )
-texture = SubResource( 3 )
+position = Vector2( -3.7755, -0.353951 )
+frames = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )

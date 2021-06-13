@@ -35,6 +35,7 @@ func _ready():
 	state_machine.set_side(initial_direction)
 
 func _process_moving(delta, _meta):
+	$Sprite.set_frame(0)
 	move_timer += delta
 	if move_timer > move_time:
 		state_machine.set_state(BikerStates.SHOOTING)
@@ -65,6 +66,7 @@ func _process_enter_stage(delta, _meta):
 	state_machine.set_state(BikerStates.MOVING)
 
 func _process_shooting(delta, _meta):
+	$Sprite.set_frame(1)
 	shoot_timer += delta
 	if(shoot_timer >= shoot_time):
 		state_machine.set_state(BikerStates.MOVING)

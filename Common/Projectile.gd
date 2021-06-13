@@ -11,6 +11,7 @@ var distance_made = 0
 func _physics_process(delta):
 	position += direction * speed * delta
 	distance_made += (direction * speed * delta).length()
+	self.rotation = direction.angle()  + PI/2
 	if distance_made > projectile_range:
 		explode()
 
