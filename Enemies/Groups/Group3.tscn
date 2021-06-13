@@ -25,7 +25,7 @@ position = Vector2( 68.2039, 46.7955 )
 rotation = 1.60132
 
 [node name="Canoa" parent="CanoaPath" instance=ExtResource( 5 )]
-position = Vector2( 965.01, 83.2467 )
+position = Vector2( 965.086, 81.9709 )
 rotation = -1.50838
 offset = 1756.31
 initial_direction = 1
@@ -49,7 +49,6 @@ offset = 181.686
 position = Vector2( 317.092, 45.3439 )
 rotation = 2.97138
 offset = 254.36
-speed = 90
 
 [node name="Pistolero6" parent="PistoleroPath" instance=ExtResource( 4 )]
 position = Vector2( 569.987, 16.5368 )

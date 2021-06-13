@@ -19,11 +19,9 @@ curve = SubResource( 1 )
 position = Vector2( 164.064, 79.1554 )
 rotation = 2.7707
 offset = 411.324
-enter_speed = 5
-speed = 60
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 931.639, 89.6657 )
-rotation = -1.63322
+position = Vector2( 931.639, 89.632 )
+rotation = -1.5708
 offset = 3263.34
 initial_direction = 1
