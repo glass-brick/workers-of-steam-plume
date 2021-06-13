@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/game logo.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/MateSC-Regular.tres" type="DynamicFont" id=2]
+[ext_resource path="res://StaticScreens/Screen.gd" type="Script" id=3]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.269
+anchor_top = 0.505
+anchor_right = 0.732
+anchor_bottom = 0.742
+custom_fonts/font = ExtResource( 2 )
+text = "Begin escape"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Button" to="." method="goto" binds= [ "res://World/World.tscn" ]]
