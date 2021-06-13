@@ -1,42 +1,92 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=1]
 [ext_resource path="res://Enemies/Biker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Biker" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
 position = Vector2( 900, 30 )
 rotation = -2.44346
-speed = 300
 
 [node name="Biker2" parent="." instance=ExtResource( 2 )]
+material = SubResource( 2 )
 position = Vector2( 80, 30 )
 rotation = 2.44346
-speed = 300
 
 [node name="Biker3" parent="." instance=ExtResource( 2 )]
+material = SubResource( 3 )
 position = Vector2( 478.941, 30 )
 rotation = 3.14159
-speed = 300
 
 [node name="Biker4" parent="." instance=ExtResource( 2 )]
+material = SubResource( 4 )
 position = Vector2( 210.119, 30 )
 rotation = 2.44346
-speed = 300
 
 [node name="Biker5" parent="." instance=ExtResource( 2 )]
+material = SubResource( 5 )
 position = Vector2( 704.888, 30 )
 rotation = -2.44346
-speed = 300
 
 [node name="Biker6" parent="." instance=ExtResource( 2 )]
+material = SubResource( 6 )
 position = Vector2( 40, 105 )
 rotation = -4.01426
-speed = 300
 
 [node name="Biker7" parent="." instance=ExtResource( 2 )]
+material = SubResource( 7 )
 position = Vector2( 965.971, 103.941 )
 rotation = 4.01426
-speed = 300
