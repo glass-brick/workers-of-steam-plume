@@ -4,6 +4,7 @@ export (int) var damage = 10
 export (int) var speed = 40
 export (int) var projectile_range = 1500
 
+var creator = self
 var direction
 var distance_made = 0
 
@@ -19,7 +20,7 @@ func explode():
 
 func _on_Projectile_body_entered(body):
 	if body.has_method('_on_hit'):
-		body._on_hit(damage, self)
+		body._on_hit(damage, creator)
 		explode()
 	if body.name == 'TileMap':
 		explode()

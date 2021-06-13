@@ -14,6 +14,7 @@ export (bool) var shoot_at_time = true
 export (Array, int) var shoot_points = []
 export (float) var shoot_interval_time = 1.0
 export (TargetOptions) var target = TargetOptions.MoveCart
+export (int) var reward_points = 5
 
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 var vertical_translation_offset = 0
@@ -106,6 +107,8 @@ func _physics_process(delta):
 	
 func _on_hit(_damageTaken, _attacker):
 	if not (state_machine.get_state() == EnemyAStates.DEAD):
+		if _attacker.has_method('charge_points'):
+			_attacker.charge_points(self.reward_points)
 		state_machine.set_state(EnemyAStates.DEAD)
 		
 func _on_dead_start(_meta):

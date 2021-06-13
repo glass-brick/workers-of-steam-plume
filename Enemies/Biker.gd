@@ -11,6 +11,7 @@ var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 export (int) var projectile_speed = 400
 export (int) var projectile_damage = 10
 export (int) var damage = 10
+export (int) var reward_points = 5
 
 var shoot_timer = 0
 var move_timer = 0
@@ -71,6 +72,8 @@ func _physics_process(delta):
 
 func _on_hit(_damageTaken, _attacker):
 	if not (state_machine.get_state() == BikerStates.DEAD):
+		if _attacker.has_method('charge_points'):
+			_attacker.charge_points(self.reward_points)
 		state_machine.set_state(BikerStates.DEAD)
 	
 

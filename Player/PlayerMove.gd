@@ -6,6 +6,8 @@ export (int) var health = 100
 export (int) var iframes_time = 2
 export (float) var blinking_speed = 0.05
 export (int) var dig_length = 100
+export (float) var transform_burnout = 15
+export (float) var transformed_points_modifier = 0.2
 
 var velocity = Vector2(0,0)
 var iframes_active = false
@@ -18,6 +20,10 @@ var projectileBase = preload("res://Common/Projectile.tscn")
 
 export (float) var shoot_cooldown = 0.2
 var shoot_counter = 0
+var transform_charge = 0
+
+var transform_click_timer = 0
+var transform_click_time = 0.5
 
 enum PlayerStates { MOVE, DEAD, SHOOT, TRANSFORMED }
 
@@ -28,6 +34,7 @@ onready var state_machine = StateMachine.new(PlayerStates, self)
 
 onready var sprite = $Sprite
 onready var player_shoot = get_node("/root/World/PlayerShoot")
+onready var player_move = get_node("/root/World/PlayerMove")
 onready var initial_postition = self.position
 
 func _ready():
@@ -71,6 +78,7 @@ func make_projectile_in_direction(direction):
 	projectile.speed = projectile_speed
 	projectile.damage = projectile_damage
 	projectile.direction = direction
+	projectile.creator = self
 	return projectile
 
 
@@ -94,8 +102,10 @@ func shoot_transformed_to(direction):
 	projectile3.global_position = global_position
 
 
-func get_transform_input():
-	if Input.is_action_pressed("transform"):
+func get_transform_input(delta):
+	transform_click_timer += delta
+	if Input.is_action_pressed("transform") and transform_click_timer > transform_click_time :
+		transform_click_timer = 0
 		if self.state_machine.get_state() == PlayerStates.TRANSFORMED:
 			detransform()
 		else:
@@ -110,7 +120,20 @@ func _process_transformed(delta, _meta):
 	process_iframes(delta)
 	velocity = move_and_slide(velocity)
 	get_shoot_input(delta)
-	get_transform_input()
+	get_transform_input(delta)
+	self.player_move.transform_charge -= delta * self.player_move.transform_burnout
+	if self.player_move.transform_charge <= 0:
+		self.player_move.transform_charge = 0
+		detransform()
+
+func charge_points(points):
+	if self == self.player_move:
+		var charge_amount = points
+		if state_machine.get_state() == PlayerStates.TRANSFORMED:
+			charge_amount *= self.transformed_points_modifier
+		self.transform_charge = min(self.transform_charge + charge_amount, 100)
+	else:
+		self.player_move.charge_points(points)
 
 func process_iframes(delta):
 	if iframes_active:
@@ -128,11 +151,11 @@ func _process_move(delta, _meta):
 	get_move_input()
 	process_iframes(delta)
 	velocity = move_and_slide(velocity)
-	get_transform_input()
+	get_transform_input(delta)
 
 func _process_shoot(delta, _meta):
 	get_shoot_input(delta)
-	get_transform_input()
+	get_transform_input(delta)
 
 func _on_transformed_start(_meta):
 	self.position = player_shoot.position

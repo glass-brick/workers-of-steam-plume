@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 41.8362, 52.9864, 1.33484, -64.0723, -1.33484, 64.0723, 161.727, 208.576, 6.6742, -93.4388, -6.6742, 93.4388, 44.2608, 424.82, 0, 0, 0, 0, 156.387, 585.001 )
+"points": PoolVector2Array( 0, 0, 0, 0, 41.8362, 52.9864, 0, 0, 0, 0, 107.243, 528.189, 0, 0, 0, 0, 502.356, 564.23, 0, 0, 0, 0, 902.807, 524.185, 0, 0, 0, 0, 966.88, 50.3167 )
 }
 
 [sub_resource type="Curve2D" id=2]
@@ -23,7 +23,7 @@ curve = SubResource( 1 )
 
 [node name="Canoa" parent="CanoaPath" instance=ExtResource( 5 )]
 position = Vector2( 41.8362, 52.9864 )
-rotation = 0.655696
+rotation = 1.43321
 enter_speed = 5
 speed = 50
 vertical_speed = 0
@@ -38,40 +38,40 @@ position = Vector2( -64.2852, 42.4543 )
 curve = SubResource( 2 )
 
 [node name="Pistolero" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 490.792, 112.481 )
-rotation = 0.1834
+position = Vector2( 183.749, 170.687 )
+rotation = 0.152649
 offset = 448.88
 enter_speed = 5
 speed = 60
 target = 1
 
 [node name="Pistolero5" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 658.853, 39.9364 )
-rotation = -2.94821
+position = Vector2( 471.778, 475.46 )
+rotation = -2.95041
 offset = 1835.74
 enter_speed = 5
 speed = 60
 target = 1
 
 [node name="Pistolero4" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 286.202, 175.398 )
-rotation = -2.67795
+position = Vector2( 933.879, 256.853 )
+rotation = 1.63322
 offset = 1223.54
 enter_speed = 5
 speed = 60
 target = 1
 
 [node name="Pistolero3" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 730.781, 158.789 )
-rotation = 0.260602
+position = Vector2( 427.425, 191.945 )
+rotation = 0.0779666
 offset = 693.34
 enter_speed = 5
 speed = 60
 target = 1
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 334.891, 43.5386 )
-rotation = 2.90767
+position = Vector2( 334.257, 40.7487 )
+rotation = 2.9848
 offset = 163.14
 enter_speed = 5
 speed = 60
