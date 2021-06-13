@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player/PlayerMove.gd" type="Script" id=1]
 [ext_resource path="res://Player/IframeShader.shader" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/player_unificado.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/player_caldera_turret.png" type="Texture" id=5]
 [ext_resource path="res://Music/transformed.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/explosion_grande.wav" type="AudioStream" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -93,7 +94,7 @@ disabled = true
 visible = false
 position = Vector2( -1.4142, 10.6066 )
 frames = SubResource( 7 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
@@ -120,3 +121,6 @@ linear_accel_random = 0.48
 
 [node name="TransformedSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
