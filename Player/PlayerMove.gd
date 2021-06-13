@@ -77,7 +77,7 @@ func get_shoot_input(delta):
 func shoot_to(direction):
 	var projectile = make_projectile_in_direction(direction)
 	get_node('/root/World').add_child(projectile)
-	projectile.global_position = global_position
+	projectile.global_position = global_position + projectile.direction * 20
 	projectile.rotation = direction.angle() + PI/2
 
 func make_projectile_in_direction(direction):
@@ -90,23 +90,13 @@ func make_projectile_in_direction(direction):
 
 
 func shoot_transformed_to(direction):
-	var projectile = make_projectile_in_direction(direction)
-	projectile.collision_mask = 6
-	projectile.collision_layer = 0
-	get_node('/root/World').add_child(projectile)
-	projectile.global_position = global_position
+	for dir in [direction, direction.rotated(PI/6), direction.rotated(-PI/6)]:
+		var projectile = make_projectile_in_direction(dir)
+		projectile.collision_mask = 6
+		projectile.collision_layer = 0
+		get_node('/root/World').add_child(projectile)
+		projectile.global_position = global_position
 
-	var projectile2 = make_projectile_in_direction(direction.rotated(PI/6))
-	projectile2.collision_mask = 6
-	projectile2.collision_layer = 0
-	get_node('/root/World').add_child(projectile2)
-	projectile2.global_position = global_position
-
-	var projectile3 = make_projectile_in_direction(direction.rotated(-PI/6))
-	projectile3.collision_mask = 6
-	projectile3.collision_layer = 0
-	get_node('/root/World').add_child(projectile3)
-	projectile3.global_position = global_position
 
 
 func get_transform_input(delta):

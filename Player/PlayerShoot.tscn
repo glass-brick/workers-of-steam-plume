@@ -75,11 +75,12 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 2 )
 frames = SubResource( 6 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
 position = Vector2( 0.523441, 0.36222 )
 rotation = 1.5708
+z_index = 1
 frames = SubResource( 11 )
 offset = Vector2( -0.523441, -9.36222 )
