@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=1]
+[ext_resource path="res://Enemies/Biker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/GloboMachinegun.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
+shader_param/active = false
+shader_param/time_scale = 20.0
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0.943874, 15.102, -0.943874, -15.102, 574.265, 592.616, 0.242348, -0.269785, -0.242348, 0.269785, 571.285, 17.5457 )
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Biker" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+position = Vector2( 785.645, 142.523 )
+rotation = -2.778
+speed = 300
+
+[node name="globopumpumPath" type="Path2D" parent="."]
+position = Vector2( 380.997, 7.97185 )
+curve = SubResource( 2 )
+
+[node name="GloboChinegun" parent="globopumpumPath" instance=ExtResource( 4 )]
+position = Vector2( 571.285, 17.5457 )
+rotation = -1.6971
+offset = 575.43
+initial_direction = 1

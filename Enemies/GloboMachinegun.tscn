@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Enemies/GloboMachinegun.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/globo_tirador.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/topadora_patronal_machinegunner.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/Damage.tres" type="Material" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.0241, 32.6842 )
+
+[node name="GloboChinegun" type="PathFollow2D"]
+lookahead = 0.001
+script = ExtResource( 1 )
+shoot_and_move = true
+number_of_bullets = 3
+time_for_spread = 0.1
+reward_points = 20
+health = 50
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 5 )
+position = Vector2( 43.0585, 7.07649 )
+texture = ExtResource( 3 )
+offset = Vector2( -46.1261, -8.95562 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )
+
+[node name="ChineGuy" type="Sprite" parent="."]
+material = ExtResource( 5 )
+position = Vector2( -0.0518799, 0.0296631 )
+texture = ExtResource( 4 )
+offset = Vector2( -0.509827, 15.5435 )
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="hit" from="Hitbox" to="." method="_on_hit"]

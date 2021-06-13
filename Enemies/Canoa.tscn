@@ -60,7 +60,7 @@ material = ExtResource( 5 )
 position = Vector2( 0.528061, -1.47194 )
 rotation = 3.14159
 frames = SubResource( 7 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="SpriteGuy1" type="Sprite" parent="."]

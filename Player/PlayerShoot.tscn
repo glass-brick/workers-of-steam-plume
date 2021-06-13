@@ -75,6 +75,7 @@ shape = SubResource( 13 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 18 )
 frames = SubResource( 17 )
+frame = 1
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]

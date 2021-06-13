@@ -11,14 +11,20 @@ export (int) var vertical_speed = 15
 export (int) var vertical_offset_limit = 100
 export (bool) var bounce_at_path_end = true
 export (bool) var shoot_at_time = true
+export (bool) var shoot_and_move = false
 export (Array, int) var shoot_points = []
 export (float) var shoot_interval_time = 1.0
+export (int) var number_of_bullets = 1
+export (float) var time_for_spread = 0.3
+
 export (TargetOptions) var target = TargetOptions.MoveCart
 export (int) var reward_points = 5
 export (int) var health = 1
 export (float) var damage_show_time = 5
 var damage_show_timer = 0
 var show_damage = false
+var spread_timer = 0
+var spread_shot = 0
 
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 var vertical_translation_offset = 0
@@ -59,7 +65,7 @@ var move_timer = 0
 func _on_side_change(new_side):
 	scale.x = -1 if new_side == Sides.BACKWARDS else 1
 
-func _process_moving(delta, _meta):
+func move(delta):
 	var side_multiplier = 1 if state_machine.current_side == StateMachine.Sides.FORWARDS else -1
 	var old_offset = get_offset()
 	var new_offset = old_offset + speed * delta * side_multiplier
@@ -71,7 +77,10 @@ func _process_moving(delta, _meta):
 		return
 	
 	set_offset(new_offset)
-	
+
+
+func _process_moving(delta, _meta):
+	move(delta)
 	if shoot_at_time:
 		move_timer += delta
 		if shoot_interval_time < move_timer:
@@ -85,7 +94,7 @@ func _process_moving(delta, _meta):
 
 var shoot_timer = 0
 var shoot_time = 0.5
-func _on_shooting_start(_meta):
+func shoot():
 	var direction = get_target_shoot_direction_from(global_position)
 	var projectile = projectileBase.instance()
 	projectile.speed = projectile_speed
@@ -93,10 +102,24 @@ func _on_shooting_start(_meta):
 	projectile.direction = direction
 	get_node('/root/World').add_child(projectile)
 	projectile.global_position = global_position
+
+func _on_shooting_start(_meta):
+	shoot()
 	shoot_timer = 0
+	spread_shot = 1
+	spread_timer = 0
 
 func _process_shooting(delta, _meta):
+	if self.shoot_and_move:
+		move(delta)
 	shoot_timer += delta
+	if number_of_bullets > 1:
+		spread_timer += delta
+		if spread_timer > time_for_spread and spread_shot < number_of_bullets:
+			shoot()
+			spread_shot += 1
+			spread_timer = 0
+
 	if(shoot_timer >= shoot_time):
 		state_machine.set_state(EnemyAStates.MOVING)
 	
