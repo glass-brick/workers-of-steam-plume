@@ -103,5 +103,20 @@ rotation = 1.5708
 frames = SubResource( 12 )
 offset = Vector2( -0.523441, -9.36222 )
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( -0.944946, -12.5992 )
+amount = 1000
+lifetime_randomness = 0.78
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 2.37
+direction = Vector2( 0, 1 )
+spread = 25.64
+gravity = Vector2( 0, 0 )
+initial_velocity = 107.54
+initial_velocity_random = 0.52
+linear_accel = -45.16
+linear_accel_random = 0.48
+
 [node name="TransformedSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
