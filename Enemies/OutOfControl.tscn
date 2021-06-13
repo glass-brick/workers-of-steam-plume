@@ -31,6 +31,7 @@ max_rotation = 0.01
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
+frame = 1
 playing = true
 flip_h = true
 

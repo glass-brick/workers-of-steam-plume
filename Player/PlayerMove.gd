@@ -25,7 +25,7 @@ var transform_charge = 0
 var transform_click_timer = 0
 var transform_click_time = 0.5
 
-enum PlayerStates { MOVE, DEAD, SHOOT, TRANSFORMED }
+enum PlayerStates { MOVE, DEAD, SHOOT, TRANSFORMING, TRANSFORMED, DETRANSFORMING }
 
 export (PlayerStates) var initial_state 
 
@@ -35,7 +35,7 @@ onready var state_machine = StateMachine.new(PlayerStates, self)
 onready var sprite = $Sprite
 onready var player_shoot = get_node("/root/World/PlayerShoot")
 onready var player_move = get_node("/root/World/PlayerMove")
-onready var initial_postition = self.position
+onready var initial_position = self.position
 
 func _ready():
 	state_machine.set_state(initial_state)
@@ -113,21 +113,10 @@ func get_transform_input(delta):
 	if Input.is_action_pressed("transform") and transform_click_timer > transform_click_time :
 		transform_click_timer = 0
 		if self.state_machine.get_state() == PlayerStates.TRANSFORMED:
-			detransform()
+			state_machine.set_state(PlayerStates.DETRANSFORMING)
 		else:
-			state_machine.set_state(PlayerStates.TRANSFORMED)
+			state_machine.set_state(PlayerStates.TRANSFORMING)
 
-func detransform():
-	state_machine.set_state(initial_state)
-	if self != player_shoot:
-		$JoinedThing.visible = false
-		$Cannon.visible = false
-		$Collisionjoined.disabled = true
-	else:
-		$Cannon.visible = true
-	$Sprite.visible = true
-	$CollisionShape2D.disabled = false
-	self.position = self.initial_postition
 
 func _process_transformed(delta, _meta):
 	get_move_input()
@@ -138,7 +127,7 @@ func _process_transformed(delta, _meta):
 	self.player_move.transform_charge -= delta * self.player_move.transform_burnout
 	if self.player_move.transform_charge <= 0:
 		self.player_move.transform_charge = 0
-		detransform()
+		state_machine.set_state(PlayerStates.DETRANSFORMING)
 
 func charge_points(points):
 	if self == self.player_move:
@@ -171,19 +160,58 @@ func _process_shoot(delta, _meta):
 	get_shoot_input(delta)
 	get_transform_input(delta)
 
+func _on_transforming_start(_meta):
+	if self == player_move:
+		pause_mode = PAUSE_MODE_PROCESS
+
+func _process_transforming(delta, _meta):
+	if self == player_move:
+		get_tree().paused = true
+		position = position.move_toward(player_shoot.position, delta * speed)
+		if position == player_shoot.position:
+			pause_mode = PAUSE_MODE_STOP
+			get_tree().paused = false
+			state_machine.set_state(PlayerStates.TRANSFORMED)
+	else:
+		state_machine.set_state(PlayerStates.TRANSFORMED)
+
+		
+func _on_detransforming_start(_meta):
+	pause_mode = PAUSE_MODE_PROCESS
+	if self == player_move:
+		$JoinedThing.visible = false
+		$Cannon.visible = false
+		$Collisionjoined.disabled = true
+	else:
+		$Cannon.visible = true
+	$Sprite.visible = true
+	$CollisionShape2D.disabled = false
+	
+func _process_detransforming(delta, _meta):
+	get_tree().paused = true
+	position = position.move_toward(initial_position, delta * speed)
+	if player_move.position == player_move.initial_position and player_shoot.position == player_shoot.initial_position:
+		pause_mode = PAUSE_MODE_STOP
+		get_tree().paused = false
+		state_machine.set_state(initial_state)
+
 func _on_transformed_start(_meta):
 	self.position = player_shoot.position
-	if self != player_shoot:
+	if self == player_move:
+		print('mover transform')
 		$JoinedThing.visible = true
 		$Cannon.visible = true
 		$Collisionjoined.disabled = false
 	else:
-		$Cannon.visible = true
+		print('shooter transform')
+		$Cannon.visible = false
 	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
 
 	
 func _physics_process(delta):
+	if self == player_shoot:
+		print(state_machine.get_state())
 	state_machine.process_step(delta)
 
 func _on_dead_start(_meta):

@@ -5,59 +5,59 @@
 [ext_resource path="res://Sprites/player_caldera.png" type="Texture" id=3]
 [ext_resource path="res://Player/IframeShader.shader" type="Shader" id=4]
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33.3504, 33.4831 )
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
 shader_param/modulate = null
 shader_param/active = null
 shader_param/time_scale = 20.0
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 81, 81 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
 region = Rect2( 81, 0, 81, 81 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
 region = Rect2( 162, 0, 81, 81 )
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 17, 36 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 17, 0, 17, 36 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
 region = Rect2( 34, 0, 17, 36 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
 region = Rect2( 51, 0, 17, 36 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 8 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "shoot",
 "speed": 10.0
@@ -70,15 +70,16 @@ script = ExtResource( 1 )
 initial_state = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-material = SubResource( 18 )
-frames = SubResource( 17 )
+material = SubResource( 2 )
+frames = SubResource( 6 )
+frame = 1
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
 position = Vector2( 0.523441, 0.36222 )
 rotation = 1.5708
-frames = SubResource( 12 )
+frames = SubResource( 11 )
 offset = Vector2( -0.523441, -9.36222 )
