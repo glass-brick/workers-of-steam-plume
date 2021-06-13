@@ -43,7 +43,6 @@ script = ExtResource( 3 )
 material = SubResource( 1 )
 position = Vector2( 785.645, 142.523 )
 rotation = -2.778
-speed = 300
 
 [node name="PistoleroPath" type="Path2D" parent="."]
 position = Vector2( -64.2852, 42.4543 )
@@ -53,8 +52,6 @@ curve = SubResource( 2 )
 position = Vector2( 164.064, 79.1554 )
 rotation = 2.7707
 offset = 411.324
-enter_speed = 5
-speed = 60
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
 position = Vector2( 931.639, 89.632 )
