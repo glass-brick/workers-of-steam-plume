@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/GloboMachinegun.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/globo_tirador.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/topadora_patronal_machinegunner.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=5]
+[ext_resource path="res://Sounds/explosion_chica.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/steam_engine_constante.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/machine_gunner.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.0241, 32.6842 )
@@ -53,6 +56,15 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 64.52
 linear_accel = -45.16
 linear_accel_random = 0.48
+
+[node name="constante" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="disparo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]

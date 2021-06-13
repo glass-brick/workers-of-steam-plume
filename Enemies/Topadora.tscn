@@ -1,33 +1,36 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Enemies/Topadora.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/topadora_patronal.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/topadora_patronal_machinegunner.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=5]
+[ext_resource path="res://Sounds/canoa_topadora_constante.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/machine_gunner.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/explosion_grande.wav" type="AudioStream" id=8]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64.375, 19.75 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 152, 87 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
 region = Rect2( 152, 0, 152, 87 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
 region = Rect2( 304, 0, 152, 87 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
 region = Rect2( 456, 0, 152, 87 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -59,12 +62,12 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 2.875, -0.375 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 5 )
 position = Vector2( -0.00602722, 0.125717 )
-frames = SubResource( 8 )
+frames = SubResource( 6 )
 offset = Vector2( 13.8438, 19.9807 )
 flip_h = true
 
@@ -81,6 +84,15 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 64.52
 linear_accel = -45.16
 linear_accel_random = 0.48
+
+[node name="constante" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="disparo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]

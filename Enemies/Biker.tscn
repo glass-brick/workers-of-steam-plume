@@ -72,7 +72,7 @@ stream = ExtResource( 6 )
 [node name="muerte" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 
-[node name="ataque" type="AudioStreamPlayer2D" parent="."]
+[node name="disparo" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 
 [connection signal="body_entered" from="HitboxOut" to="." method="_on_HitboxOut_body_entered"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Enemies/Canoa.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/canoa_rifles.png" type="Texture" id=3]
 [ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=4]
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=5]
+[ext_resource path="res://Sounds/rifle.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/canoa_topadora_constante.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/explosion_grande.wav" type="AudioStream" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -96,6 +99,15 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 64.52
 linear_accel = -45.16
 linear_accel_random = 0.48
+
+[node name="constante" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="disparo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]
