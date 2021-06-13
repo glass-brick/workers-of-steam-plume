@@ -8,7 +8,7 @@ var initialized = false
 var current_group_index = 0
 var time_since_last_group = 0
 var instanced_groups = []
-var groups_between_saves = 2
+var groups_between_saves = 3
 
 var groups_defeated = 0
 

@@ -1,17 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
 [ext_resource path="res://Enemies/Pistolero.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/GloboMachinegun.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 84.0151, 3.58419, -84.0151, -3.58419, 570.285, 16.5457, -0.943874, -16.0459, 0.943874, 16.0459, 158.242, 83.7476, -1.41581, -18.8775, 1.41581, 18.8775, 161.988, 164.656, -0.943874, -21.2372, 0.943874, 21.2372, 934.769, 237.774, -1.41581, -25.9565, 1.41581, 25.9565, 921.63, 395.396, 25.0127, 0, -25.0127, 0, 555.307, 500.819, 0.943874, 21.7091, -0.943874, -21.7091, 164.235, 396.145, 0, 16.9897, 0, -16.9897, 159.74, 223.839, -1.41581, 16.5178, 1.41581, -16.5178, 930.56, 182.437, 0.943874, 15.102, -0.943874, -15.102, 931.309, 88.044, 78.3416, 1.41581, -78.3416, -1.41581, 571.285, 17.5457 )
-}
-
-[sub_resource type="Curve2D" id=2]
-_data = {
-"points": PoolVector2Array( 0.943874, 15.102, -0.943874, -15.102, 574.265, 592.616, 0.242348, -0.269785, -0.242348, 0.269785, 571.285, 17.5457 )
 }
 
 [node name="Node2D" type="Node2D"]
@@ -22,24 +16,12 @@ position = Vector2( -64.2852, 42.4543 )
 curve = SubResource( 1 )
 
 [node name="Pistolero" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 164.064, 79.1554 )
-rotation = 2.7707
-offset = 411.324
-enter_speed = 5
-speed = 60
+position = Vector2( 273.659, 436.589 )
+rotation = -2.88904
+offset = 2107.55
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 751.001, 42.1231 )
-rotation = -2.97406
-offset = 3452.03
-initial_direction = 1
-
-[node name="globopumpumPath" type="Path2D" parent="."]
-position = Vector2( 380.997, 7.97185 )
-curve = SubResource( 2 )
-
-[node name="GloboChinegun" parent="globopumpumPath" instance=ExtResource( 6 )]
-position = Vector2( 571.285, 17.5458 )
-rotation = -1.5708
-offset = 575.43
+position = Vector2( 667.886, 198.94 )
+rotation = -0.0312398
+offset = 2906.97
 initial_direction = 1
