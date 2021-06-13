@@ -13,12 +13,12 @@ var velocity = Vector2(0,0)
 var iframes_active = false
 var iframes_counter = 0
 
-var projectile_speed = 400
-var projectile_damage = 10
+export (int) var projectile_speed = 400
+export (int) var projectile_damage = 10
 
 var projectileBase = preload("res://Common/Projectile.tscn")
 
-export (float) var shoot_cooldown = 0.2
+export (float) var shoot_cooldown = 0.3
 var shoot_counter = 0
 var transform_charge = 0
 

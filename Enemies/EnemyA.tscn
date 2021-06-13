@@ -15,6 +15,7 @@ width = 20
 [node name="EnemyA" type="PathFollow2D"]
 lookahead = 0.001
 script = ExtResource( 1 )
+damage_show_time = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 0.00861812 )

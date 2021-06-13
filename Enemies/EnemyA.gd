@@ -15,6 +15,10 @@ export (Array, int) var shoot_points = []
 export (float) var shoot_interval_time = 1.0
 export (TargetOptions) var target = TargetOptions.MoveCart
 export (int) var reward_points = 5
+export (int) var health = 1
+export (float) var damage_show_time = 5
+var damage_show_timer = 0
+var show_damage = false
 
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
 var vertical_translation_offset = 0
@@ -102,14 +106,33 @@ func _physics_process(delta):
 	# If we reach the end of the screen, start going back
 	if (path.global_position.y > vertical_offset_limit and vertical_speed > 0) or (path.global_position.y < 0 and vertical_speed < 0):
 		vertical_speed = -vertical_speed
+	process_show_damage(delta)
 
 	state_machine.process_step(delta)
-	
+
+func process_show_damage(delta):
+	var possible_sprites = self.get_children()
+	possible_sprites.append(self)
+	for child in self.get_children():
+		var mat = child.get_material()
+		if mat and mat.get_shader_param("time_scale") != null:
+			if self.show_damage:
+				mat.set_shader_param("active", true)
+				self.damage_show_timer += delta
+				if self.damage_show_time < self.damage_show_timer:
+					self.show_damage = false
+			else:
+				mat.set_shader_param("active", false)
+				self.damage_show_timer = 0
+			
 func _on_hit(_damageTaken, _attacker):
 	if not (state_machine.get_state() == EnemyAStates.DEAD):
-		if _attacker.has_method('charge_points'):
-			_attacker.charge_points(self.reward_points)
-		state_machine.set_state(EnemyAStates.DEAD)
+		self.health -= _damageTaken
+		self.show_damage = true
+		if self.health <= 0:
+			if _attacker.has_method('charge_points'):
+				_attacker.charge_points(self.reward_points)
+			state_machine.set_state(EnemyAStates.DEAD)
 		
 func _on_dead_start(_meta):
 	if path.get_child_count() == 1:

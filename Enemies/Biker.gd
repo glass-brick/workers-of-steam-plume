@@ -12,6 +12,11 @@ export (int) var projectile_speed = 400
 export (int) var projectile_damage = 10
 export (int) var damage = 10
 export (int) var reward_points = 5
+export (int) var health = 20
+
+export (float) var damage_show_time = 5
+var damage_show_timer = 0
+var show_damage = false
 
 var shoot_timer = 0
 var move_timer = 0
@@ -69,14 +74,32 @@ func _on_dead_start(_meta):
 		
 func _physics_process(delta):
 	state_machine.process_step(delta)
+	process_show_damage(delta)
 
 func _on_hit(_damageTaken, _attacker):
 	if not (state_machine.get_state() == BikerStates.DEAD):
-		if _attacker.has_method('charge_points'):
-			_attacker.charge_points(self.reward_points)
-		state_machine.set_state(BikerStates.DEAD)
-	
+		self.health -= _damageTaken
+		self.show_damage = true
+		if self.health <= 0:
+			if _attacker.has_method('charge_points'):
+				_attacker.charge_points(self.reward_points)
+			state_machine.set_state(BikerStates.DEAD)
 
+func process_show_damage(delta):
+	var possible_sprites = self.get_children()
+	possible_sprites.append(self)
+	for child in self.get_children():
+		var mat = child.get_material()
+		if mat and mat.get_shader_param("time_scale") != null:
+			if self.show_damage:
+				mat.set_shader_param("active", true)
+				self.damage_show_timer += delta
+				if self.damage_show_time < self.damage_show_timer:
+					self.show_damage = false
+			else:
+				mat.set_shader_param("active", false)
+				self.damage_show_timer = 0
+			
 
 func _on_HitboxOut_body_entered(body):
 	if not state_machine.get_state() == BikerStates.DEAD and body.has_method('_on_hit'):

@@ -23,21 +23,7 @@ enter_speed = 5
 speed = 60
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 703.767, 33.847 )
-rotation = -2.97898
-offset = 3500.0
+position = Vector2( 931.639, 89.6657 )
+rotation = -1.63322
+offset = 3263.34
 initial_direction = 1
-
-[node name="Pistolero3" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 458.176, 24.7043 )
-rotation = 3.02097
-offset = 112.38
-
-[node name="Pistolero4" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 219.872, 175.175 )
-rotation = 0.107279
-offset = 558.865
-
-[node name="Pistolero5" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 570.285, 16.5457 )
-rotation = -3.11426
