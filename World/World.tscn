@@ -47,7 +47,7 @@ shader_param/scroll_speed = null
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
 enemy_groups = [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 29 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 26 ) ]
-max_time_intervals = [ 300, 45, 40, 20, 40, 20, 4, 5, 70, 5, 5, 60, 20, 20, 60, 20, 5, 60, 5, 5, 4 ]
+max_time_intervals = [ 300, 45, 40, 20, 40, 20, 8, 5, 70, 5, 5, 60, 20, 20, 60, 20, 5, 60, 5, 5, 4 ]
 time_to_first = 5
 
 [node name="PlayerMove" parent="." instance=ExtResource( 2 )]
