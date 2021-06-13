@@ -1,23 +1,60 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/PlayerMove.gd" type="Script" id=1]
-[ext_resource path="res://Player/IframeShader.shader" type="Shader" id=2]
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 2 )
-shader_param/modulate = null
-shader_param/active = null
-shader_param/time_scale = 20.0
-
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 1 )
-colors = PoolColorArray( 0.134888, 0, 0.507813, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[ext_resource path="res://Sprites/player_caldera_turret.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/player_caldera.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 21.4891, 30.3424 )
+extents = Vector2( 33.3504, 33.4831 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 81, 81 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 81, 0, 81, 81 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 162, 0, 81, 81 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 17, 36 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 17, 0, 17, 36 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 34, 0, 17, 36 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 51, 0, 17, 36 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 10.0
+} ]
 
 [node name="PlayerShoot" type="KinematicBody2D"]
 collision_layer = 8
@@ -25,10 +62,16 @@ collision_mask = 12
 script = ExtResource( 1 )
 initial_state = 2
 
-[node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 4 )
-scale = Vector2( 0.0209941, 60.6222 )
-texture = SubResource( 2 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 7 )
+frame = 1
+playing = true
+
+[node name="Cannon" type="AnimatedSprite" parent="."]
+position = Vector2( 0.523441, 0.36222 )
+rotation = 1.5708
+frames = SubResource( 12 )
+offset = Vector2( -0.523441, -9.36222 )

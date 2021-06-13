@@ -53,14 +53,21 @@ func get_move_input():
 
 func get_shoot_input(delta):
 	var shoot = Input.is_action_pressed("shoot")
+	var mouse_position = get_global_mouse_position()
+	if $Cannon:
+		$Cannon.look_at(mouse_position)
+		$Cannon.rotation += PI/2
 
 	if shoot_counter >= shoot_cooldown:
 		shoot_counter = 0
+		if $Cannon:
+			$Cannon.play("default")
 	elif shoot_counter != 0:
 		shoot_counter += delta
 
 	if shoot and shoot_counter == 0:
-		var direction = ( get_global_mouse_position() - global_position).normalized()
+		$Cannon.play("shoot")
+		var direction = ( mouse_position - global_position).normalized()
 		
 		if state_machine.get_state() == PlayerStates.TRANSFORMED:
 			shoot_transformed_to(direction)

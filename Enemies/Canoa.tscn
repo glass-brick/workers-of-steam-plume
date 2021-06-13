@@ -6,41 +6,41 @@
 [ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=4]
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=5]
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 shader_param/modulate = Color( 1, 0.227451, 0.227451, 1 )
 shader_param/active = true
 shader_param/time_scale = 0.1
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 75.8868, 19.4757 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 152, 43 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
 region = Rect2( 152, 0, 152, 43 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
 region = Rect2( 304, 0, 152, 43 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
 region = Rect2( 456, 0, 152, 43 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
 [node name="Canoa" type="PathFollow2D"]
-material = SubResource( 9 )
+material = SubResource( 1 )
 lookahead = 0.001
 script = ExtResource( 1 )
 enter_speed = 10
@@ -53,33 +53,34 @@ collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 5 )
 position = Vector2( 0.528061, -1.47194 )
 rotation = 3.14159
-frames = SubResource( 8 )
-frame = 3
+frames = SubResource( 7 )
+frame = 2
 playing = true
 
 [node name="SpriteGuy1" type="Sprite" parent="."]
 material = ExtResource( 5 )
-position = Vector2( 32.6704, -0.440872 )
+position = Vector2( 32, 0 )
 texture = ExtResource( 3 )
 centered = false
-offset = Vector2( -11, -5 )
+offset = Vector2( -4.6421, -12.5034 )
 region_enabled = true
-region_rect = Rect2( 12, 48, 24, 38 )
+region_rect = Rect2( 16, 48, 38, 24 )
 
 [node name="SpriteGuy2" type="Sprite" parent="."]
 material = ExtResource( 5 )
-position = Vector2( -3.64011, -0.536228 )
+position = Vector2( -3.0625, 0.0625 )
+rotation = -0.0130021
 texture = ExtResource( 3 )
 centered = false
-offset = Vector2( -11, -5 )
+offset = Vector2( -4.47854, -12.5771 )
 region_enabled = true
-region_rect = Rect2( 12, 48, 24, 38 )
+region_rect = Rect2( 16, 48, 38, 24 )
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="hit" from="Hitbox" to="." method="_on_hit"]
