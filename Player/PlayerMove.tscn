@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/PlayerMove.gd" type="Script" id=1]
 [ext_resource path="res://Player/IframeShader.shader" type="Shader" id=2]
 [ext_resource path="res://Sprites/player_locomotora.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/player_unificado.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/player_caldera_turret.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -16,8 +18,57 @@ shader_param/modulate = Color( 1, 1, 1, 1 )
 shader_param/active = false
 shader_param/time_scale = 20.0
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 24.9234, 59.7632 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 33.2395, 68.9969 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 80, 155 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 80, 0, 80, 155 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 160, 0, 80, 155 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 17, 36 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 17, 0, 17, 36 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 34, 0, 17, 36 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 51, 0, 17, 36 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 10.0
+} ]
 
 [node name="PlayerMove" type="KinematicBody2D"]
 material = SubResource( 1 )
@@ -30,4 +81,23 @@ material = SubResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
+
+[node name="Collisionjoined" type="CollisionShape2D" parent="."]
+position = Vector2( -0.594604, 11.8921 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="JoinedThing" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -1.4142, 10.6066 )
+frames = SubResource( 7 )
+frame = 2
+playing = true
+
+[node name="Cannon" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0.228033, 49.1449 )
+rotation = 1.5708
+frames = SubResource( 12 )
+offset = Vector2( -0.523441, -9.36222 )

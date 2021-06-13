@@ -54,14 +54,12 @@ func get_move_input():
 func get_shoot_input(delta):
 	var shoot = Input.is_action_pressed("shoot")
 	var mouse_position = get_global_mouse_position()
-	if $Cannon:
-		$Cannon.look_at(mouse_position)
-		$Cannon.rotation += PI/2
+	$Cannon.look_at(mouse_position)
+	$Cannon.rotation += PI/2
 
 	if shoot_counter >= shoot_cooldown:
 		shoot_counter = 0
-		if $Cannon:
-			$Cannon.play("default")
+		$Cannon.play("default")
 	elif shoot_counter != 0:
 		shoot_counter += delta
 
@@ -121,6 +119,14 @@ func get_transform_input(delta):
 
 func detransform():
 	state_machine.set_state(initial_state)
+	if self != player_shoot:
+		$JoinedThing.visible = false
+		$Cannon.visible = false
+		$Collisionjoined.disabled = true
+	else:
+		$Cannon.visible = true
+	$Sprite.visible = true
+	$CollisionShape2D.disabled = false
 	self.position = self.initial_postition
 
 func _process_transformed(delta, _meta):
@@ -167,6 +173,15 @@ func _process_shoot(delta, _meta):
 
 func _on_transformed_start(_meta):
 	self.position = player_shoot.position
+	if self != player_shoot:
+		$JoinedThing.visible = true
+		$Cannon.visible = true
+		$Collisionjoined.disabled = false
+	else:
+		$Cannon.visible = true
+	$Sprite.visible = false
+	$CollisionShape2D.disabled = true
+
 	
 func _physics_process(delta):
 	state_machine.process_step(delta)
