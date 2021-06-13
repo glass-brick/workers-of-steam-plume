@@ -8,6 +8,7 @@ export (int) var move_time = 2
 export (EnterOptions) var enter_direction = EnterOptions.TOP
 
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
+var explosion = preload("res://Common/Explosion.tscn")
 export (int) var projectile_speed = 400
 export (int) var projectile_damage = 10
 export (int) var damage = 10
@@ -72,12 +73,18 @@ func _process_shooting(delta, _meta):
 		state_machine.set_state(BikerStates.MOVING)
 
 func _on_dead_start(_meta):
+	collision_layer = 0
 	for child in get_children():
 		if child is CPUParticles2D:
 			child.emitting = false
+		elif child is Area2D:
+			child.queue_free()
 		else:
 			child.visible = false
-	yield(get_tree().create_timer(2), "timeout")
+	var explosion_instance = explosion.instance()
+	add_child(explosion_instance)
+	explosion_instance.play('explosion')
+	yield(get_tree().create_timer(4), "timeout")
 	queue_free()
 		
 func _physics_process(delta):

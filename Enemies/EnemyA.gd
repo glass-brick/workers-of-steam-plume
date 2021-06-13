@@ -28,6 +28,7 @@ var spread_timer = 0
 var spread_shot = 0
 
 var projectileBase = preload("res://Common/EnemyProjectile.tscn")
+var explosion = preload("res://Common/Explosion.tscn")
 var vertical_translation_offset = 0
 export (int) var projectile_speed = 400
 export (int) var projectile_damage = 10
@@ -162,9 +163,14 @@ func _on_dead_start(_meta):
 	for child in get_children():
 		if child is CPUParticles2D:
 			child.emitting = false
+		elif child is Area2D:
+			child.queue_free()
 		else:
 			child.visible = false
-	yield(get_tree().create_timer(2), "timeout")
+	var explosion_instance = explosion.instance()
+	add_child(explosion_instance)
+	explosion_instance.play('explosion')
+	yield(get_tree().create_timer(4), "timeout")
 	if path.get_child_count() == 1:
 		path.queue_free()
 	else:
