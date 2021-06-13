@@ -187,6 +187,8 @@ func _process_detransforming(delta, _meta):
 		pause_mode = PAUSE_MODE_STOP
 		get_tree().paused = false
 		state_machine.set_state(initial_state)
+		if self == player_move:
+			iframes_active = true
 
 func _on_transformed_start(_meta):
 	self.position = player_shoot.position
