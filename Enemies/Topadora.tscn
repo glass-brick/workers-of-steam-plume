@@ -91,7 +91,7 @@ autoplay = true
 
 [node name="disparo" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-volume_db = -6.0
+volume_db = -8.0
 
 [node name="muerte" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
