@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/OutOfControl.tscn" type="PackedScene" id=8]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="OutOfControl" parent="." instance=ExtResource( 8 )]
+position = Vector2( 92.9775, 76.0128 )
+rotation = 1.22
+
+[node name="OutOfControl2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 928.894, 62.2397 )
+rotation = 2.16261

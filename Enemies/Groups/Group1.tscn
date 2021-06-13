@@ -34,8 +34,8 @@ rotation = 3.02097
 offset = 112.38
 
 [node name="Pistolero4" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 219.872, 175.175 )
-rotation = 0.107279
+position = Vector2( 219.871, 175.175 )
+rotation = 0.108942
 offset = 558.865
 
 [node name="Pistolero5" parent="PistoleroPath" instance=ExtResource( 4 )]
