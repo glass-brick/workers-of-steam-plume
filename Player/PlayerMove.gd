@@ -17,6 +17,7 @@ export (int) var projectile_speed = 400
 export (int) var projectile_damage = 10
 
 var projectileBase = preload("res://Common/Projectile.tscn")
+var transformedSong = preload("res://Music/transformed.wav")
 
 export (float) var shoot_cooldown = 0.3
 var shoot_counter = 0
@@ -162,6 +163,7 @@ func _process_shoot(delta, _meta):
 
 func _on_transforming_start(_meta):
 	if self == player_move:
+		get_node('/root/SceneManager').play_theme(transformedSong)
 		pause_mode = PAUSE_MODE_PROCESS
 
 func _process_transforming(delta, _meta):
@@ -182,6 +184,7 @@ func _on_detransforming_start(_meta):
 		$JoinedThing.visible = false
 		$Cannon.visible = false
 		$Collisionjoined.disabled = true
+		get_node('/root/SceneManager').resume_default_theme()
 	else:
 		$Cannon.visible = true
 	$Sprite.visible = true
@@ -198,20 +201,16 @@ func _process_detransforming(delta, _meta):
 func _on_transformed_start(_meta):
 	self.position = player_shoot.position
 	if self == player_move:
-		print('mover transform')
 		$JoinedThing.visible = true
 		$Cannon.visible = true
 		$Collisionjoined.disabled = false
 	else:
-		print('shooter transform')
 		$Cannon.visible = false
 	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
 
 	
 func _physics_process(delta):
-	if self == player_shoot:
-		print(state_machine.get_state())
 	state_machine.process_step(delta)
 
 func _on_dead_start(_meta):
