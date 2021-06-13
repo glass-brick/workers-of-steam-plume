@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/canoa_descontrol.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/OutOfControl.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 117, 40 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 117, 0, 117, 40 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 59.1071, 22.0878 )
+
+[node name="OutOfControl" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource( 2 )
+speed = 60
+max_rotation = 0.01
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+frame = 1
+playing = true
+flip_h = true
+
+[node name="HitboxOut" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxOut"]
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="HitboxOut" to="." method="_on_HitboxOut_body_entered"]

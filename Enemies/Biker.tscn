@@ -4,17 +4,17 @@
 [ext_resource path="res://Enemies/Damage.tres" type="Material" id=2]
 [ext_resource path="res://Sprites/motoquero.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 44, 43 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
 region = Rect2( 44, 0, 44, 43 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -36,7 +36,7 @@ damage_show_time = 0.3
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 2 )
 position = Vector2( -3.7755, -0.353951 )
-frames = SubResource( 8 )
+frames = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )

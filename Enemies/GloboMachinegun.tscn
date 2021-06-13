@@ -12,11 +12,14 @@ extents = Vector2( 31.0241, 32.6842 )
 [node name="GloboChinegun" type="PathFollow2D"]
 lookahead = 0.001
 script = ExtResource( 1 )
+speed = 30
+vertical_offset_limit = 0
 shoot_and_move = true
 number_of_bullets = 3
 time_for_spread = 0.1
-reward_points = 20
+reward_points = 30
 health = 50
+damage_show_time = 0.3
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 5 )

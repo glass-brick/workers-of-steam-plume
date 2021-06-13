@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/ActivateShader.shader" type="Shader" id=1]
 [ext_resource path="res://Enemies/Biker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
 [ext_resource path="res://Enemies/Pistolero.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Canoa.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/GloboMachinegun.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Topadora.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/OutOfControl.tscn" type="PackedScene" id=8]
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/modulate = Color( 1, 0.313726, 0.313726, 1 )
@@ -23,11 +26,21 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 68.2039, 46.7955, -33.371, -32.0362, 33.371, 32.0362, 88.8624, 526.852, -70.7465, -1.33484, 70.7465, 1.33484, 503.327, 577.008, -41.38, 30.7013, 41.38, -30.7013, 902.807, 524.185, 0, 0, 0, 0, 966.88, 50.3167 )
 }
 
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0.943874, 15.102, -0.943874, -15.102, 574.265, 592.616, 0.242348, -0.269785, -0.242348, 0.269785, 571.285, 17.5457 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 84.3826, 53.6312, 0, 0, 0, 0, 928.668, 57.8739, 0, 0, 0, 0, 935.739, 134.241, 0, 0, 0, 0, 84.3826, 131.413, 0, 0, 0, 0, 87.211, 217.68, 0, 0, 0, 0, 930.082, 220.508, 0, 0, 0, 0, 934.325, 303.947, 0, 0, 0, 0, 82.9683, 301.119, 0, 0, 0, 0, 84.3826, 388.8, 0, 0, 0, 0, 934.325, 388.8, 0, 0, 0, 0, 939.982, 501.937, 0, 0, 0, 0, 92.8679, 497.694, 0, 0, 0, 0, 85.7968, 551.434, 0, 0, 0, 0, 937.153, 568.405, 0, 0, 0, 0, 935.533, 62.6369, 0, 0, 0, 0, 84.3826, 53.6312 )
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Biker" parent="." instance=ExtResource( 2 )]
-material = SubResource( 4 )
+material = SubResource( 1 )
 position = Vector2( 785.645, 142.523 )
 rotation = -2.778
 speed = 300
@@ -44,8 +57,8 @@ enter_speed = 5
 speed = 60
 
 [node name="Pistolero2" parent="PistoleroPath" instance=ExtResource( 4 )]
-position = Vector2( 931.639, 89.6657 )
-rotation = -1.63322
+position = Vector2( 931.639, 89.632 )
+rotation = -1.5708
 offset = 3263.34
 initial_direction = 1
 
@@ -57,7 +70,38 @@ position = Vector2( 68.2039, 46.7955 )
 rotation = 1.60132
 
 [node name="Canoa" parent="CanoaPath" instance=ExtResource( 5 )]
-position = Vector2( 965.01, 83.2467 )
+position = Vector2( 965.086, 81.9709 )
 rotation = -1.50838
 offset = 1756.31
 initial_direction = 1
+
+[node name="globopumpumPath" type="Path2D" parent="."]
+position = Vector2( 380.997, 7.97185 )
+curve = SubResource( 4 )
+
+[node name="GloboChinegun" parent="globopumpumPath" instance=ExtResource( 6 )]
+position = Vector2( 571.285, 17.5458 )
+rotation = -1.5708
+offset = 575.43
+initial_direction = 1
+
+[node name="globopumpumPath2" type="Path2D" parent="."]
+position = Vector2( -501.536, 10.0907 )
+curve = SubResource( 4 )
+
+[node name="GloboChinegun" parent="globopumpumPath2" instance=ExtResource( 6 )]
+position = Vector2( 571.285, 17.5458 )
+rotation = -1.5708
+offset = 575.43
+initial_direction = 1
+
+[node name="TopadoraPath" type="Path2D" parent="."]
+position = Vector2( 4.24268, 1.41422 )
+curve = SubResource( 5 )
+
+[node name="Topadora" parent="TopadoraPath" instance=ExtResource( 7 )]
+position = Vector2( 84.3826, 53.6312 )
+rotation = 0.00769216
+
+[node name="OutOfControl" parent="." instance=ExtResource( 8 )]
+position = Vector2( 400.222, 74.9533 )

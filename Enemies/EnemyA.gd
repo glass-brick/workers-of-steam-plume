@@ -16,6 +16,7 @@ export (Array, int) var shoot_points = []
 export (float) var shoot_interval_time = 1.0
 export (int) var number_of_bullets = 1
 export (float) var time_for_spread = 0.3
+export (float) var spread_angle = 0
 
 export (TargetOptions) var target = TargetOptions.MoveCart
 export (int) var reward_points = 5
@@ -99,7 +100,7 @@ func shoot():
 	var projectile = projectileBase.instance()
 	projectile.speed = projectile_speed
 	projectile.damage = projectile_damage
-	projectile.direction = direction
+	projectile.direction = direction.rotated(rand_range(-spread_angle,spread_angle))
 	get_node('/root/World').add_child(projectile)
 	projectile.global_position = global_position
 
