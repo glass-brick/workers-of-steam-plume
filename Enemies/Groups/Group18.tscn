@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/PistoleroB.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Groups/Group.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 84.0151, 3.58419, -84.0151, -3.58419, 570.285, 16.5457, -0.943874, -16.0459, 0.943874, 16.0459, 158.242, 83.7476, -1.41581, -18.8775, 1.41581, 18.8775, 161.988, 164.656, -0.943874, -21.2372, 0.943874, 21.2372, 934.769, 237.774, -1.41581, -25.9565, 1.41581, 25.9565, 921.63, 395.396, 25.0127, 0, -25.0127, 0, 555.307, 500.819, 0.943874, 21.7091, -0.943874, -21.7091, 164.235, 396.145, 0, 16.9897, 0, -16.9897, 159.74, 223.839, -1.41581, 16.5178, 1.41581, -16.5178, 930.56, 182.437, 0.943874, 15.102, -0.943874, -15.102, 931.309, 88.044, 78.3416, 1.41581, -78.3416, -1.41581, 571.285, 17.5457 )
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="PistoleroPath" type="Path2D" parent="."]
+position = Vector2( -64.2852, 42.4543 )
+curve = SubResource( 1 )
+
+[node name="PistoleroB" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 570.285, 16.5457 )
+rotation = -3.11426
+
+[node name="PistoleroB2" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 751.003, 42.1234 )
+rotation = -2.95222
+offset = 3452.03
+
+[node name="PistoleroB3" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 715.237, 35.7815 )
+rotation = -2.97518
+offset = 3488.37
+
+[node name="PistoleroB4" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 679.446, 29.9184 )
+rotation = -2.9866
+offset = 3524.7
+
+[node name="PistoleroB5" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 643.58, 24.6313 )
+rotation = -3.00572
+offset = 3561.04
+
+[node name="PistoleroB6" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 607.487, 20.1776 )
+rotation = -3.03458
+offset = 3597.38
+
+[node name="PistoleroB7" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 786.727, 48.9147 )
+rotation = -2.95247
+offset = 3415.69
+
+[node name="PistoleroB8" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 822.403, 56.1903 )
+rotation = -2.9337
+offset = 3379.35
+
+[node name="PistoleroB9" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 857.788, 64.0241 )
+rotation = -2.90447
+offset = 3343.02
+
+[node name="PistoleroB10" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 893.03, 72.8123 )
+rotation = -2.88927
+offset = 3306.68
+
+[node name="PistoleroB11" parent="PistoleroPath" instance=ExtResource( 1 )]
+position = Vector2( 927.414, 84.4358 )
+rotation = -2.56252
+offset = 3270.34
